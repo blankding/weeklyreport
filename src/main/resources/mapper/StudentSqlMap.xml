@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.example.weeklyreport.dao.StudentDao">
+    <!-- 缓存配置-->
+    <cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+    <insert id="save" parameterType="com.example.weeklyreport.entity.Student"
+            useGeneratedKeys="true" keyProperty="student_id">
+		insert into ms_student
+		 (student_id,student_number,class_id,student_name,password,email,
+		 sex,mobile,creatime,modifytime)
+		 values(#{student_id},#{student_number},#{class_id},#{student_name},#{password},#{email},
+		 #{sex},#{mobile},sysdate(),sysdate())
+		 </insert>
+    <update id="dynamicUpdate"  parameterType="com.example.weeklyreport.entity.Student">
+        update ms_student
+        <set>
+            <if test="student_name!=null">
+                student_name=#{student_name},
+            </if>
+            <if test="student_number!=null">
+                student_number=#{student_number},
+            </if>
+            <if test="password!=null">
+                password=#{password},
+            </if>
+            <if test="email!=null">
+                email=#{email},
+            </if>
+            <if test="class_id!=null">
+                class_id=#{class_id},
+            </if>
+            <if test="sex!=null">
+                sex=#{sex},
+            </if>
+            <if test="mobile!=null">
+                mobile=#{mobile},
+            </if>
+            <if test="modifytime!=null">
+                modifytime=#{modifytime}
+            </if>
+        </set>
+        where student_id=#{student_id}
+    </update>
+    <delete id="deleteById">
+        delete from ms_student where student_id=#{student_id}
+    </delete>
+    <select id="findAll" resultType="com.example.weeklyreport.entity.Student">
+        select * from ms_student
+    </select>
+    <select id="findById" resultType="com.example.weeklyreport.entity.Student">
+		select * from ms_student where student_id=#{student_id}
+    </select>
+    <select id="dynamicFind" resultType="com.example.weeklyreport.entity.Student">
+        select * from ms_student
+        <where>
+            <if test="student_name!=null">
+                student_name=#{student_name}
+            </if>
+            <if test="student_number!=null">
+               and student_number=#{student_number}
+            </if>
+        </where>
+    </select>
+    <select id="findUnion" resultType="com.example.weeklyreport.entity.Student"></select>
+    <select id="dynamicFind2" resultType="com.example.weeklyreport.entity.Student"></select>
+    <select id="findUnion2" resultType="com.example.weeklyreport.entity.Student"></select>
+
+</mapper>

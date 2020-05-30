@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.example.weeklyreport.dao.ReportDao">
+    <!-- 缓存配置-->
+    <cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+    <insert id="save" parameterType="com.example.weeklyreport.entity.Report"
+            useGeneratedKeys="true" keyProperty="report_id">
+        insert into ms_report
+		 (report_id,student_number,class_id,teacher_num,study_aim,reason,problem,live,next_aim,
+		 creatime,modifytime)
+		 values(#{report_id},#{student_number},#{class_id},#{teacher_num},#{study_aim},#{reason},
+		#{problem},#{live},#{next_aim},sysdate(),sysdate())
+		</insert>
+    <delete id="deleteById">
+         delete from ms_report where report_id=#{report_id}
+    </delete>
+    <select id="findAll" resultType="com.example.weeklyreport.entity.Report">
+         select * from ms_report
+    </select>
+    <select id="findById" resultType="com.example.weeklyreport.entity.Report">
+		select * from ms_report where report_id=#{report_id}
+    </select>
+    <update id="dynamicUpdate" parameterType="com.example.weeklyreport.entity.Report">
+        update ms_report
+        <set>
+            <if test="study_aim!=null and study_aim='' ">
+                study_aim=#{study_aim},
+            </if>
+            <if test="reason!=null">
+                reason=#{reason},
+            </if>
+            <if test="problem!=null">
+                problem=#{problem},
+            </if>
+            <if test="live!=null">
+                live=#{live},
+            </if>
+            <if test="next_aim!=null">
+                next_aim=#{next_aim},
+            </if>
+            <if test="modifytime!=null">
+                modifytime=#{modifytime}
+            </if>
+        </set>
+        where report_id=#{report_id}
+    </update>
+    <select id="dynamicFind" resultType="com.example.weeklyreport.entity.Report"></select>
+    <select id="findUnion" resultType="com.example.weeklyreport.entity.Report"></select>
+    <select id="dynamicFind2" resultType="com.example.weeklyreport.entity.Report"></select>
+    <select id="findUnion2" resultType="com.example.weeklyreport.entity.Report"></select>
+
+</mapper>

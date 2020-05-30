@@ -1,0 +1,160 @@
+package com.example.weeklyreport.service.imp;
+
+import com.example.weeklyreport.dao.StudentDao;
+import com.example.weeklyreport.entity.Admin;
+import com.example.weeklyreport.entity.Student;
+import com.example.weeklyreport.service.StudentService;
+import com.example.weeklyreport.util.MSUtil;
+import com.example.weeklyreport.util.Result;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class StudentServiceImpl implements StudentService {
+
+@Resource
+private StudentDao studentDao;
+
+    //学生查询所有
+    @Override
+    public Result findAll() {
+        Result result = new Result();
+
+        List<Student> students = studentDao.findAll();
+
+        result.setData(students);
+        result.setStatus(0);
+        result.setMsg("查询成功");
+        return result;
+    }
+
+    //新增学生
+    @Override
+    public Result addStudent(int student_number, int class_id, String student_name, String email, String mobile, int sex) {
+        Result result=new Result();
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.clear();
+        map.put("student_name", student_name);
+
+        Student student=new Student();
+        student.setStudent_id(null);
+        student.setStudent_number(student_number);
+        student.setClass_id(class_id);
+        student.setStudent_name(student_name);//默认uname为空
+        student.setPassword(MSUtil.md5("111111"));//默认密码为六个1
+        student.setEmail(email);//默认email为空
+        student.setSex(sex);//默认为男
+        student.setMobile(mobile);
+        student.setCreatime(null);
+        student.setModifytime(null);
+        studentDao.save(student);
+        result.setStatus(0);
+        result.setMsg("新增学生成功");
+        return result;
+    }
+
+    //学生删除
+    @Override
+    public Result deleteStudentById(int studentId) {
+        Result result = new Result();
+        Student checkAdmin1 = studentDao.findById(studentId);
+        if (checkAdmin1 == null) {
+            result.setStatus(1);
+            result.setMsg("不存在此管理员");
+            return result;
+        }
+        studentDao.deleteById(studentId);
+        result.setStatus(0);
+        result.setMsg("删除学生成功");
+        return result;
+    }
+
+    //学生更新
+    @Override
+    public Result updateStudent(int student_id, int student_number, int class_id, String student_name, String password, String email, int sex, String mobile) {
+        Result result=new Result();
+        Student checkAdmin1=studentDao.findById(student_id);
+        if(checkAdmin1==null){
+            result.setStatus(1);
+            result.setMsg("不存在此学生");
+            return result;
+        }
+        if(!"".equals(student_name)){
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("student_name", student_name);
+            Student checkAdmin2=studentDao.dynamicFind(map);
+            if(checkAdmin2!=null && !student_name.equals(checkAdmin1.getStudent_name())){
+                result.setStatus(1);
+                result.setMsg("学生已经存在");
+                return result;
+            }
+        }
+        if(!"".equals(email)){
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("email", email);
+            Student checkAdmin2=studentDao.dynamicFind(map);
+            if(checkAdmin2!=null && !email.equals(checkAdmin1.getEmail())){
+                result.setStatus(1);
+                result.setMsg("邮箱已经存在");
+                return result;
+            }
+        }
+        Student student=new Student();
+        student.setStudent_id(student_id);
+        student.setStudent_number(student_number);
+        student.setClass_id(class_id);
+        student.setStudent_name(student_name);
+        student.setMobile(mobile);
+        student.setPassword(MSUtil.md5(password));
+        student.setEmail(email);
+        student.setSex(sex);
+        Timestamp now=new Timestamp(System.currentTimeMillis());
+        student.setModifytime(now);
+        studentDao.dynamicUpdate(student);
+        result.setStatus(0);
+        result.setMsg("更新学生基本信息成功");
+        return result;
+    }
+
+
+    //学生登录
+    @Override
+    public Result checkLogin(String input, String password) {
+            Result result=new Result();
+            if("".equals(input)){
+                result.setStatus(1);
+                result.setMsg("输入的学号为空");
+                return result;
+            }
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("student_number", input);
+            Student student=studentDao.dynamicFind(map);
+            return check(password,student);
+        }
+
+        private Result check(String password, Student student) {
+            Result result=new Result();
+            if(student==null){
+                result.setStatus(1);
+                result.setMsg("不存在此用户");
+                return result;
+            }
+            if(!MSUtil.md5(password).equals(student.getPassword())){
+                result.setStatus(1);
+                result.setMsg("密码不正确");
+                return result;
+            }
+            result.setStatus(0);
+            result.setMsg("登录成功");
+            result.setData(student);
+            return result;
+        }
+
+
+}
+
