@@ -22,6 +22,7 @@ public class StudentController {
     @RequestMapping(value="/list",method= RequestMethod.GET)
     @ResponseBody
     public Result list() {
+
         Result result=studentService.findAll();
         return result;
     }
