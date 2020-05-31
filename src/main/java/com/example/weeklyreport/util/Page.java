@@ -26,6 +26,7 @@ public class Page implements Serializable {
         this.pageSize = pageSize;
     }
     //toString方法
+    @Override
     public String toString() {
         return "Page [current=" + current + ", pageSize=" + pageSize + "]";
     }

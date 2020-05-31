@@ -17,7 +17,6 @@
         <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="email" column="email"/>
-        <result property="real_name" column="real_name"/>
         <result property="sex" column="sex"/>
         <result property="mobile" column="mobile"/>
         <result property="creatime" column="creatime"/>

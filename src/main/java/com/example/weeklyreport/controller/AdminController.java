@@ -1,7 +1,13 @@
 package com.example.weeklyreport.controller;
 
-import com.example.weeklyreport.service.AdminService;
-import com.example.weeklyreport.util.Result;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+
+import com.example.weeklyreport.entity.Admin;
+import com.example.weeklyreport.service.AdminService;
+import com.example.weeklyreport.util.Result;
 
 @Controller
 @RequestMapping("/admin")
@@ -166,7 +174,6 @@ public class AdminController {
     @RequestMapping(value="/listview",method=RequestMethod.GET)
     @ResponseBody
     public ModelAndView listview(ModelAndView modelAndView) {
-        //modelAndView.addObject("roleList", roleService.findAll());
         modelAndView.setViewName("admin/adminList");
         return modelAndView;
     }

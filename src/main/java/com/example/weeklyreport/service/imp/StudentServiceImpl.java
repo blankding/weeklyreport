@@ -35,7 +35,7 @@ private StudentDao studentDao;
 
     //新增学生
     @Override
-    public Result addStudent(int student_number, int class_id, String student_name, String email, String mobile, int sex) {
+    public Result addStudent(int student_number, String class_id, String student_name, String email, String mobile, int sex) {
         Result result=new Result();
         Map<String,Object> map=new HashMap<String,Object>();
         map.clear();
@@ -76,7 +76,7 @@ private StudentDao studentDao;
 
     //学生更新
     @Override
-    public Result updateStudent(int student_id, int student_number, int class_id, String student_name, String password, String email, int sex, String mobile) {
+    public Result updateStudent(int student_id, int student_number, String class_id, String student_name, String password, String email, int sex, String mobile) {
         Result result=new Result();
         Student checkAdmin1=studentDao.findById(student_id);
         if(checkAdmin1==null){
@@ -124,20 +124,17 @@ private StudentDao studentDao;
 
     //学生登录
     @Override
-    public Result checkLogin(String input, String password) {
-            Result result=new Result();
-            if("".equals(input)){
-                result.setStatus(1);
-                result.setMsg("输入的学号为空");
-                return result;
-            }
-            Map<String,Object> map=new HashMap<String,Object>();
-            map.put("student_number", input);
-            Student student=studentDao.dynamicFind(map);
-            return check(password,student);
+    public Result checkLogin(int student_number, String password) {
+        Result result=new Result();
+
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("student_number", student_number);
+        Student student=studentDao.dynamicFind(map);
+        return check(password,student);
         }
 
-        private Result check(String password, Student student) {
+    //登录
+    private Result check(String password, Student student) {
             Result result=new Result();
             if(student==null){
                 result.setStatus(1);
@@ -155,6 +152,16 @@ private StudentDao studentDao;
             return result;
         }
 
-
+    //根据class_id连表查询
+    @Override
+    public Result findByClassId(String class_id) {
+        Result result=new Result();
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("class_id", class_id);
+        result.setData(studentDao.findByClassId(map));
+        result.setStatus(0);
+        result.setMsg("查询成功");
+        return result;
+    }
 }
 

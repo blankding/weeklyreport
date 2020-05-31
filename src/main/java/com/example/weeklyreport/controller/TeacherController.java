@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/teacher")
@@ -53,8 +54,12 @@ public class TeacherController {
     //老师登录
     @RequestMapping(value="/login",method=RequestMethod.POST)
     @ResponseBody
-    public Result checkLogin(String input,String password){
-        Result result=teacherService.checkLogin(input, password);
+    public Result checkLogin(int teacher_num, String password, HttpServletRequest request){
+        Result result=teacherService.checkLogin(teacher_num,password);
+        if(result.getStatus() == 0)
+        {
+            request.getSession().setAttribute("adminInfo", result.getData());
+        }
         return result;
     }
 }

@@ -10,8 +10,8 @@ public class Admin implements Serializable {
     private String username;
     private String password;
     private String email;
-    private String real_name;
-    private Integer sex;//性别，0:男，1:女
+    //性别，0:男，1:女
+    private Integer sex;
     private String mobile;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Timestamp creatime;//创建时间
@@ -43,12 +43,6 @@ public class Admin implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getReal_name() {
-        return real_name;
-    }
-    public void setReal_name(String real_name) {
-        this.real_name = real_name;
-    }
     public Integer getSex() {
         return sex;
     }
@@ -74,8 +68,9 @@ public class Admin implements Serializable {
         this.modifytime = modifytime;
     }
 
+    @Override
     public String toString() {
         return "Admin [admin_id=" + admin_id + ", username=" + username + ", password=" + password + ", email=" + email
-                + ", real_name=" + real_name + ", sex=" + sex + ", mobile=" + mobile + ", creatime=" + creatime + ", modifytime=" + modifytime + "]";
+                + ", sex=" + sex + ", mobile=" + mobile + ", creatime=" + creatime + ", modifytime=" + modifytime + "]";
     }
 }

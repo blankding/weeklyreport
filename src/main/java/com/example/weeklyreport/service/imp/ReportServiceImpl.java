@@ -1,6 +1,7 @@
 package com.example.weeklyreport.service.imp;
 
 import com.example.weeklyreport.dao.ReportDao;
+import com.example.weeklyreport.dao.StudentDao;
 import com.example.weeklyreport.entity.Report;
 import com.example.weeklyreport.entity.Student;
 import com.example.weeklyreport.entity.Teacher;
@@ -19,6 +20,8 @@ import java.util.Map;
 public class ReportServiceImpl implements ReportService {
     @Resource
     private ReportDao reportDao;
+    @Resource
+    private StudentDao studentDao;
 
     //周报查询所有
     @Override
@@ -35,7 +38,7 @@ public class ReportServiceImpl implements ReportService {
 
     //新增周报
     @Override
-    public Result addReport(int student_number, int class_id, int teacher_num, String study_aim, String reason, String problem, String live, String next_aim) {
+    public Result addReport(int student_number, String class_id, int teacher_num, String study_aim, String reason, String problem, String live, String next_aim) {
         Result result=new Result();
         Map<String,Object> map=new HashMap<String,Object>();
         map.clear();
@@ -99,4 +102,27 @@ public class ReportServiceImpl implements ReportService {
         result.setMsg("更新周报成功");
         return result;
     }
+
+    @Override
+    public Result findByStudentNumber(int student_number) {
+        Result result=new Result();
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("student_number", student_number);
+        result.setData(reportDao.findByStudentId(map));
+        result.setStatus(0);
+        result.setMsg("查询成功");
+        return result;
+    }
+
+    @Override
+    public Result findByClassId(String class_id) {
+        Result result=new Result();
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("class_id", class_id);
+        result.setData(reportDao.findByClassId(map));
+        result.setStatus(0);
+        result.setMsg("查询成功");
+        return result;
+    }
+
 }

@@ -52,17 +52,46 @@
     <select id="findById" resultType="com.example.weeklyreport.entity.Student">
 		select * from ms_student where student_id=#{student_id}
     </select>
-    <select id="dynamicFind" resultType="com.example.weeklyreport.entity.Student">
+    <select id="dynamicFind" parameterType="map"
+            resultType="com.example.weeklyreport.entity.Student">
         select * from ms_student
         <where>
-            <if test="student_name!=null">
-                student_name=#{student_name}
-            </if>
             <if test="student_number!=null">
-               and student_number=#{student_number}
+                student_number=#{student_number}
+            </if>
+            <if test="student_name!=null">
+                and student_name=#{student_name}
             </if>
         </where>
     </select>
+    <select id="findByClassId" parameterType="map"
+            resultType="com.example.weeklyreport.entity.Student">
+        select ma.*,mr.class_id,mr.class_name
+        from ms_student ma
+        join ms_class mr
+        on ma.class_id=mr.class_id
+        <where>
+            <if test="class_id!=null">
+                ma.class_id=#{class_id}
+            </if>
+        </where>
+	</select>
+        <resultMap type="com.example.weeklyreport.entity.Student" id="StudentMap1">
+            <id property="student_id" column="student_id"/>
+            <result property="student_name" column="student_name"/>
+            <result property="class_id" column="class_id"/>
+            <result property="password" column="password"/>
+            <result property="email" column="email"/>
+            <result property="sex" column="sex"/>
+            <result property="mobile" column="mobile"/>
+            <result property="creatime" column="creatime"/>
+            <result property="modifytime" column="modifytime"/>
+            <association property="briefClass"
+                         javaType="com.example.weeklyreport.entity.brief.BriefClass">
+                <id property="class_id" column="class_id"/>
+                <result property="class_name" column="class_name"/>
+            </association>
+        </resultMap>
     <select id="findUnion" resultType="com.example.weeklyreport.entity.Student"></select>
     <select id="dynamicFind2" resultType="com.example.weeklyreport.entity.Student"></select>
     <select id="findUnion2" resultType="com.example.weeklyreport.entity.Student"></select>

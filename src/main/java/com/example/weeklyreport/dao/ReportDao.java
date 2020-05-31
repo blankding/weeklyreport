@@ -1,6 +1,7 @@
 package com.example.weeklyreport.dao;
 
 import com.example.weeklyreport.entity.Report;
+import com.example.weeklyreport.entity.Student;
 
 import java.util.List;
 import java.util.Map;
@@ -15,4 +16,6 @@ public interface ReportDao {
     public List<Report> findUnion();
     public List<Report> dynamicFind2(Map map);
     public List<Report> findUnion2(Map map);
+    List<Report> findByStudentId(Map map);
+    List<Report> findByClassId(Map map);
 }

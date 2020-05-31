@@ -13,5 +13,5 @@ public interface TeacherService {
     Result updateTeacher(int teacher_id,int teacher_num,String teacher_name,String username,String password,
                          String email,String mobile);
     //老师登录验证
-    Result checkLogin(String input,String password);
+    Result checkLogin(int teacher_num,String password);
 }

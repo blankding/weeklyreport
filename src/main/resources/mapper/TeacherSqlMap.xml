@@ -58,9 +58,7 @@
 
         </where>
     </select>
-    <select id="findByClassId" resultType="com.example.weeklyreport.entity.Teacher">
-        
-    </select>
+
     <select id="findUnion" resultType="com.example.weeklyreport.entity.Teacher"></select>
     <select id="dynamicFind2" resultType="com.example.weeklyreport.entity.Teacher"></select>
     <select id="findUnion2" resultType="com.example.weeklyreport.entity.Teacher"></select>

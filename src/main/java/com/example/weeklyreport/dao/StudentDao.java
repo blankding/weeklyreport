@@ -18,4 +18,5 @@ public interface StudentDao {
     public List<Student> dynamicFind2(Map map);
 
     public List<Student> findUnion2(Map map);
+    List<Student> findByClassId(Map map);
 }

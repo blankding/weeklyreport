@@ -31,7 +31,7 @@ public class AdminServiceImpl implements AdminService {
         Result result=new Result();
         if("".equals(input)){
             result.setStatus(1);
-            result.setMsg("输入的用户名/邮箱/手机号为空");
+            result.setMsg("输入的用户名为空");
             return result;
         }
         Map<String,Object> map=new HashMap<String,Object>();
@@ -112,6 +112,7 @@ public class AdminServiceImpl implements AdminService {
         return null;
     }
 
+    @Override
     public Result loadAdminById(int adminId) {
         Result result = new Result();
         Admin admin = adminDao.findById(adminId);
@@ -126,6 +127,7 @@ public class AdminServiceImpl implements AdminService {
         return result;
     }
 
+    @Override
     public Result deleteAdminById(int adminId) {
         Result result = new Result();
         Admin checkAdmin1 = adminDao.findById(adminId);
@@ -164,7 +166,11 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Result adminLogin(String username, String password) {
-        return null;
+        Result result=new Result();
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("username", username);
+        Admin admin=adminDao.dynamicFind(map);
+        return check(password,admin);
     }
 
     @Override

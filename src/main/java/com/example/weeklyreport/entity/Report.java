@@ -7,7 +7,9 @@ import java.sql.Timestamp;
 public class Report {
     private Integer report_id;
     private Integer student_number;
-    private Integer class_id;
+    private String class_id;
+    private String class_name;
+    private String student_name;
     private Integer teacher_num;
     private String study_aim;
     private String reason;
@@ -22,7 +24,7 @@ public class Report {
     public Report() {
     }
 
-    public Report(Integer report_id, Integer student_number, Integer class_id, Integer teacher_number, String student_aim, String reason, String problem, String live, String next, Timestamp creatime, Timestamp modifytime) {
+    public Report(Integer report_id, Integer student_number, String class_id, Integer teacher_number, String student_aim, String reason, String problem, String live, String next, Timestamp creatime, Timestamp modifytime) {
         this.report_id = report_id;
         this.student_number = student_number;
         this.class_id = class_id;
@@ -35,6 +37,11 @@ public class Report {
         this.creatime = creatime;
         this.modifytime = modifytime;
     }
+
+    public Report(String student_name) {
+        this.student_name = student_name;
+    }
+
 
     public Integer getReport_id() {
         return report_id;
@@ -52,11 +59,11 @@ public class Report {
         this.student_number = student_number;
     }
 
-    public Integer getClass_id() {
+    public String getClass_id() {
         return class_id;
     }
 
-    public void setClass_id(Integer class_id) {
+    public void setClass_id(String class_id) {
         this.class_id = class_id;
     }
 
@@ -124,14 +131,32 @@ public class Report {
         this.modifytime = modifytime;
     }
 
+    public String getStudent_name() {
+        return student_name;
+    }
+
+    public void setStudent_name(String student_name) {
+        this.student_name = student_name;
+    }
+
+    public String getClass_name() {
+        return class_name;
+    }
+
+    public void setClass_name(String class_name) {
+        this.class_name = class_name;
+    }
+
     @Override
     public String toString() {
         return "Report{" +
                 "report_id=" + report_id +
                 ", student_number=" + student_number +
-                ", class_id=" + class_id +
-                ", teacher_number=" + teacher_num +
-                ", student_aim='" + study_aim + '\'' +
+                ", class_id='" + class_id + '\'' +
+                ", class_name='" + class_name + '\'' +
+                ", student_name='" + student_name + '\'' +
+                ", teacher_num=" + teacher_num +
+                ", study_aim='" + study_aim + '\'' +
                 ", reason='" + reason + '\'' +
                 ", problem='" + problem + '\'' +
                 ", live='" + live + '\'' +

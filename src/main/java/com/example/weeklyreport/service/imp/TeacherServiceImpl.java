@@ -118,15 +118,15 @@ public class TeacherServiceImpl implements TeacherService {
 
     //老师登录
     @Override
-    public Result checkLogin(String input, String password) {
+    public Result checkLogin(int teacher_num, String password) {
         Result result=new Result();
-        if("".equals(input)){
+        if("".equals(teacher_num)){
             result.setStatus(1);
             result.setMsg("输入的学号为空");
             return result;
         }
         Map<String,Object> map=new HashMap<String,Object>();
-        map.put("teacher_num", input);
+        map.put("teacher_num", teacher_num);
         Teacher teacher=teacherDao.dynamicFind(map);
         return check(password,teacher);
     }

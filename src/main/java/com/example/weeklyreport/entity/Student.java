@@ -1,27 +1,33 @@
 package com.example.weeklyreport.entity;
 
+import com.example.weeklyreport.entity.brief.BriefClass;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.data.repository.query.Param;
 
 import java.sql.Timestamp;
 
 public class Student {
+
     private Integer student_id;
     private Integer student_number;
-    private Integer class_id;
+    private String class_id;
     private String student_name;
     private String password;
     private String email;
     private Integer sex;//性别，0:男，1:女
     private String mobile;
+    private String class_name;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Timestamp creatime;//创建时间
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Timestamp modifytime;//修改时间
 
+    private BriefClass briefClass;
+
     public Student() {
     }
 
-    public Student(Integer student_id, Integer student_number, Integer class_id, String student_name, String password, String email, Integer sex, String mobile, Timestamp creatime, Timestamp modifytime) {
+    public Student(Integer student_id, Integer student_number, String class_id, String student_name, String password, String email, Integer sex, String mobile, String class_name, Timestamp creatime, Timestamp modifytime, BriefClass briefClass) {
         this.student_id = student_id;
         this.student_number = student_number;
         this.class_id = class_id;
@@ -30,9 +36,11 @@ public class Student {
         this.email = email;
         this.sex = sex;
         this.mobile = mobile;
+        this.class_name = class_name;
         this.creatime = creatime;
         this.modifytime = modifytime;
     }
+
 
     public Integer getStudent_id() {
         return student_id;
@@ -50,11 +58,11 @@ public class Student {
         this.student_number = student_number;
     }
 
-    public Integer getClass_id() {
+    public String getClass_id() {
         return class_id;
     }
 
-    public void setClass_id(Integer class_id) {
+    public void setClass_id(String class_id) {
         this.class_id = class_id;
     }
 
@@ -114,6 +122,16 @@ public class Student {
         this.modifytime = modifytime;
     }
 
+    public String getClass_name() {
+        return class_name;
+    }
+
+    public void setClass_name(String class_name) {
+        this.class_name = class_name;
+    }
+
+
+
     @Override
     public String toString() {
         return "Student{" +
@@ -125,8 +143,10 @@ public class Student {
                 ", email='" + email + '\'' +
                 ", sex=" + sex +
                 ", mobile='" + mobile + '\'' +
+                ", class_name='" + class_name + '\'' +
                 ", creatime=" + creatime +
                 ", modifytime=" + modifytime +
+
                 '}';
     }
 }

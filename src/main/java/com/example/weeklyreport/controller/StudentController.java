@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/student")
@@ -22,7 +24,6 @@ public class StudentController {
     @RequestMapping(value="/list",method= RequestMethod.GET)
     @ResponseBody
     public Result list() {
-
         Result result=studentService.findAll();
         return result;
     }
@@ -30,7 +31,7 @@ public class StudentController {
     //新增学生
     @RequestMapping(value="/add",method=RequestMethod.POST)
     @ResponseBody
-    public Result add(int student_number,int class_id,String student_name,String email,String mobile,int sex){
+    public Result add(int student_number,String class_id,String student_name,String email,String mobile,int sex){
         Result result=studentService.addStudent(student_number,class_id, student_name, email,mobile,sex);
         return result;
     }
@@ -45,16 +46,30 @@ public class StudentController {
     //更新学生信息
     @RequestMapping(value="/updateById",method=RequestMethod.POST)
     @ResponseBody
-    public Result updateById(int student_id,int student_number,int class_id,String student_name,String password,
+    public Result updateById(int student_id,int student_number,String class_id,String student_name,String password,
                               String email,int sex,String mobile){
         Result result=studentService.updateStudent(student_id, student_number, class_id, student_name,password, email,sex,mobile);
         return result;
     }
+
     //学生登录
     @RequestMapping(value="/login",method=RequestMethod.POST)
     @ResponseBody
-    public Result checkLogin(String input,String password){
-        Result result=studentService.checkLogin(input, password);
+    public Result StudentLogin(int student_number, String password, HttpServletRequest request ){
+        Result result=studentService.checkLogin(student_number,password);
+        if(result.getStatus() == 0)
+        {
+            request.getSession().setAttribute("adminInfo", result.getData());
+        }
+
+        return result;
+    }
+
+    //根据class_id查询信息
+    @RequestMapping(value="/Unionlist",method= RequestMethod.POST)
+    @ResponseBody
+    public Result UnionList(String class_id) {
+        Result result=studentService.findByClassId(class_id);
         return result;
     }
 }

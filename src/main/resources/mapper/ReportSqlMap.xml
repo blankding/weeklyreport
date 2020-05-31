@@ -25,7 +25,7 @@
     <update id="dynamicUpdate" parameterType="com.example.weeklyreport.entity.Report">
         update ms_report
         <set>
-            <if test="study_aim!=null and study_aim='' ">
+            <if test="study_aim!=null">
                 study_aim=#{study_aim},
             </if>
             <if test="reason!=null">
@@ -50,5 +50,29 @@
     <select id="findUnion" resultType="com.example.weeklyreport.entity.Report"></select>
     <select id="dynamicFind2" resultType="com.example.weeklyreport.entity.Report"></select>
     <select id="findUnion2" resultType="com.example.weeklyreport.entity.Report"></select>
+    <select id="findByStudentId" parameterType="map"
+            resultType="com.example.weeklyreport.entity.Report">
+        select ma.*,mr.student_name
+        from ms_report ma
+        join ms_student mr
+        on ma.student_number=mr.student_number
+        <where>
+            <if test="student_number!=null">
+                ma.student_number=#{student_number}
+            </if>
+        </where>
+    </select>
 
+    <select id="findByClassId" parameterType="map"
+            resultType="com.example.weeklyreport.entity.Report">
+        select ma.*,mr.class_name
+        from ms_report ma
+        join ms_class mr
+        on ma.class_id=mr.class_id
+        <where>
+            <if test="class_id!=null">
+                ma.class_id=#{class_id}
+            </if>
+        </where>
+    </select>
 </mapper>
