@@ -13,20 +13,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @author 丁鹏益
+ */
 @Controller
 @RequestMapping("/teacher")
 public class TeacherController {
     @Resource
     private TeacherService teacherService;
 
-    //根据id加载地址信息
+    /**根据id加载地址信息*/
     @RequestMapping(value="/list",method= RequestMethod.GET)
     @ResponseBody
     public Result list() {
         Result result=teacherService.findAll();
         return result;
     }
-    //新增老师
+    /**新增老师*/
     @RequestMapping(value="/add",method=RequestMethod.POST)
     @ResponseBody
     public Result add(int teacher_num,String teacher_name,String username,String email,String mobile){
@@ -34,7 +37,7 @@ public class TeacherController {
         return result;
     }
 
-    //删除老师
+    /**删除老师*/
     @RequestMapping(value="/{TeacherId}",method=RequestMethod.DELETE)
     @ResponseBody
     public Result deleteById(@PathVariable("TeacherId") int TeacherId){
@@ -42,7 +45,7 @@ public class TeacherController {
         return result;
     }
 
-    //更新老师信息
+    /**更新老师信息*/
     @RequestMapping(value="/updateById",method=RequestMethod.POST)
     @ResponseBody
     public Result updateById(int teacher_id,int teacher_num,String teacher_name,String username,String password,
@@ -51,7 +54,7 @@ public class TeacherController {
         return result;
     }
 
-    //老师登录
+    /**老师登录*/
     @RequestMapping(value="/login",method=RequestMethod.POST)
     @ResponseBody
     public Result checkLogin(int teacher_num, String password, HttpServletRequest request){

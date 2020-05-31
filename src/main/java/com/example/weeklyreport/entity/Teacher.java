@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.sql.Timestamp;
 
+/**
+ * @author 丁鹏益
+ * 教师实体类
+ */
 public class Teacher {
     private Integer teacher_id;
     private Integer teacher_num;
@@ -13,9 +17,9 @@ public class Teacher {
     private String email;
     private String mobile_phone;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    private Timestamp creatime;//创建时间
+    private Timestamp creatime;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    private Timestamp modifytime;//修改时间
+    private Timestamp modifytime;
 
     public Teacher() {
     }

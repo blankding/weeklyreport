@@ -5,7 +5,11 @@ import com.example.weeklyreport.entity.Admin;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author 丁鹏益
+ */
 public interface AdminDao {
+
     public int save(Admin admin);
     public List<Admin> findAll();
     public int deleteById(int admin_id);

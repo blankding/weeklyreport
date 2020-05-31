@@ -6,6 +6,9 @@ import com.example.weeklyreport.entity.Student;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author 丁鹏益
+ */
 public interface ReportDao {
     public int save(Report report);
     public List<Report> findAll();

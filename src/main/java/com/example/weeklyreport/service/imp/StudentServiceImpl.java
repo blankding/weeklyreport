@@ -14,13 +14,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author 丁鹏益
+ */
 @Service
 public class StudentServiceImpl implements StudentService {
 
 @Resource
 private StudentDao studentDao;
 
-    //学生查询所有
+    /**学生查询所有*/
     @Override
     public Result findAll() {
         Result result = new Result();
@@ -33,7 +36,7 @@ private StudentDao studentDao;
         return result;
     }
 
-    //新增学生
+    /**新增学生*/
     @Override
     public Result addStudent(int student_number, String class_id, String student_name, String email, String mobile, int sex) {
         Result result=new Result();
@@ -45,10 +48,10 @@ private StudentDao studentDao;
         student.setStudent_id(null);
         student.setStudent_number(student_number);
         student.setClass_id(class_id);
-        student.setStudent_name(student_name);//默认uname为空
-        student.setPassword(MSUtil.md5("111111"));//默认密码为六个1
-        student.setEmail(email);//默认email为空
-        student.setSex(sex);//默认为男
+        student.setStudent_name(student_name);
+        student.setPassword(MSUtil.md5("111111"));
+        student.setEmail(email);
+        student.setSex(sex);
         student.setMobile(mobile);
         student.setCreatime(null);
         student.setModifytime(null);
@@ -58,7 +61,7 @@ private StudentDao studentDao;
         return result;
     }
 
-    //学生删除
+    /**学生删除*/
     @Override
     public Result deleteStudentById(int studentId) {
         Result result = new Result();
@@ -74,7 +77,7 @@ private StudentDao studentDao;
         return result;
     }
 
-    //学生更新
+    /**学生更新*/
     @Override
     public Result updateStudent(int student_id, int student_number, String class_id, String student_name, String password, String email, int sex, String mobile) {
         Result result=new Result();
@@ -122,7 +125,7 @@ private StudentDao studentDao;
     }
 
 
-    //学生登录
+    /**学生登录*/
     @Override
     public Result checkLogin(int student_number, String password) {
         Result result=new Result();
@@ -133,7 +136,7 @@ private StudentDao studentDao;
         return check(password,student);
         }
 
-    //登录
+    /**登录*/
     private Result check(String password, Student student) {
             Result result=new Result();
             if(student==null){
@@ -152,7 +155,7 @@ private StudentDao studentDao;
             return result;
         }
 
-    //根据class_id连表查询
+    /**根据class_id连表查询*/
     @Override
     public Result findByClassId(String class_id) {
         Result result=new Result();

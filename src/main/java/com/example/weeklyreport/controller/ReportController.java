@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.util.Map;
 
+/**
+ * @author 丁鹏益
+ */
 @Controller
 @RequestMapping("/report")
 public class ReportController {
     @Resource
     private ReportService reportService;
 
-    //根据id加载地址信息
+    /**根据id加载地址信息*/
     @RequestMapping(value="/list",method= RequestMethod.GET)
     @ResponseBody
     public Result list() {
@@ -26,7 +29,7 @@ public class ReportController {
         return result;
     }
 
-    //新增周报
+    /**新增周报*/
     @RequestMapping(value="/add",method=RequestMethod.POST)
     @ResponseBody
     public Result add(int student_number,String class_id,int teacher_num,String study_aim,String reason,
@@ -35,14 +38,14 @@ public class ReportController {
         return result;
     }
 
-    //删除周报
+    /**删除周报*/
     @RequestMapping(value="/{ReportId}",method=RequestMethod.DELETE)
     @ResponseBody
     public Result deleteById(@PathVariable("ReportId") int ReportId){
         Result result=reportService.deleteReportById(ReportId);
         return result;
     }
-    //更新周报
+    /**更新周报*/
     @RequestMapping(value="/updateById",method=RequestMethod.POST)
     @ResponseBody
     public Result updateById(int report_id,String study_aim,String reason,String problem,
@@ -51,7 +54,7 @@ public class ReportController {
         return result;
     }
 
-    //根据student_number查询信息
+    /**根据student_number查询信息*/
     @RequestMapping(value="/studentNumber",method= RequestMethod.POST)
     @ResponseBody
     public Result UnionList(int student_number) {
@@ -59,7 +62,7 @@ public class ReportController {
         return result;
     }
 
-    //根据class_id查询信息
+    /**根据class_id查询信息*/
     @RequestMapping(value="/classId",method= RequestMethod.POST)
     @ResponseBody
     public Result UnionList(String class_id) {

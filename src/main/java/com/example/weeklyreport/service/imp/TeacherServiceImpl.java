@@ -14,12 +14,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author 丁鹏益
+ */
 @Service
 public class TeacherServiceImpl implements TeacherService {
     @Resource
     private TeacherDao teacherDao;
 
-    //老师查询所有
+    /**老师查询所有*/
     @Override
     public Result findAll() {
         Result result = new Result();
@@ -30,7 +33,7 @@ public class TeacherServiceImpl implements TeacherService {
         return result;
     }
 
-    //新增老师
+    /**新增老师*/
     @Override
     public Result addTeacher(int teacher_num, String teacher_name, String username, String email, String mobile) {
         Result result=new Result();
@@ -43,8 +46,8 @@ public class TeacherServiceImpl implements TeacherService {
         teacher.setTeacher_num(teacher_num);
         teacher.setTeacher_name(teacher_name);
         teacher.setUsername(username);
-        teacher.setPassword(MSUtil.md5("111111"));//默认密码为六个1
-        teacher.setEmail(email);//默认email为空
+        teacher.setPassword(MSUtil.md5("111111"));
+        teacher.setEmail(email);
         teacher.setMobile(mobile);
         teacher.setCreatime(null);
         teacher.setModifytime(null);
@@ -54,7 +57,7 @@ public class TeacherServiceImpl implements TeacherService {
         return result;
     }
 
-    //老师删除
+    /**老师删除*/
     @Override
     public Result deleteTeacherById(int teacherId) {
         Result result = new Result();
@@ -70,7 +73,7 @@ public class TeacherServiceImpl implements TeacherService {
         return result;
     }
 
-    //老师更新
+    /**老师更新*/
     @Override
     public Result updateTeacher(int teacher_id, int teacher_num, String teacher_name, String username, String password, String email, String mobile) {
         Result result=new Result();
@@ -116,7 +119,7 @@ public class TeacherServiceImpl implements TeacherService {
         return result;
     }
 
-    //老师登录
+    /**老师登录*/
     @Override
     public Result checkLogin(int teacher_num, String password) {
         Result result=new Result();

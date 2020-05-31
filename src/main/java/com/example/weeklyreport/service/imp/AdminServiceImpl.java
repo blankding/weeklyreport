@@ -15,6 +15,9 @@ package com.example.weeklyreport.service.imp;
         import com.example.weeklyreport.entity.Admin;
         import com.example.weeklyreport.util.Result;
 
+/**
+ * @author 丁鹏益
+ */
 @Service
 public class AdminServiceImpl implements AdminService {
     @Resource
@@ -25,7 +28,7 @@ public class AdminServiceImpl implements AdminService {
     public Result addAdmin(String mobile, String realName, int roleId) {
         return null;
     }
-
+    /**登录*/
     @Override
     public Result checkLogin(String input, String password) {
         Result result=new Result();
@@ -39,7 +42,7 @@ public class AdminServiceImpl implements AdminService {
         Admin admin=adminDao.dynamicFind(map);
         return check(password,admin);
     }
-
+    /**check方法*/
     private Result check(String password, Admin admin) {
         Result result=new Result();
         if(admin==null){
@@ -57,7 +60,7 @@ public class AdminServiceImpl implements AdminService {
         result.setData(admin);
         return result;
     }
-
+    /**更新管理员信息*/
     @Override
     public Result updateAdmin(int admin_id, String username, String password, String email, int sex,String mobile) {
         Result result=new Result();
@@ -111,7 +114,7 @@ public class AdminServiceImpl implements AdminService {
     public Result loadAllAdmin() {
         return null;
     }
-
+    /**加载管理员信息*/
     @Override
     public Result loadAdminById(int adminId) {
         Result result = new Result();
@@ -126,7 +129,7 @@ public class AdminServiceImpl implements AdminService {
         result.setData(admin);
         return result;
     }
-
+    /**根据id删除管理员*/
     @Override
     public Result deleteAdminById(int adminId) {
         Result result = new Result();
@@ -141,7 +144,7 @@ public class AdminServiceImpl implements AdminService {
         result.setMsg("删除管理员成功");
         return result;
     }
-
+    /**查询所有管理员*/
     @Override
     public Result findAll() {
         Result result = new Result();
@@ -163,7 +166,7 @@ public class AdminServiceImpl implements AdminService {
     public Result updateAdmin2(int adminId, String username, String realName, String email, String mobile, int sex) {
         return null;
     }
-
+    /**管理员登录*/
     @Override
     public Result adminLogin(String username, String password) {
         Result result=new Result();
@@ -182,7 +185,7 @@ public class AdminServiceImpl implements AdminService {
     public Result dynamicFind2(Map map) {
         return null;
     }
-
+    /**新增管理员*/
     @Override
     public Result addAdmin3(String username, String email, String mobile, int sex) {
         Result result=new Result();

@@ -16,6 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author 丁鹏益
+ */
 @Service
 public class ReportServiceImpl implements ReportService {
     @Resource
@@ -23,7 +26,7 @@ public class ReportServiceImpl implements ReportService {
     @Resource
     private StudentDao studentDao;
 
-    //周报查询所有
+    /**周报查询所有*/
     @Override
     public Result findAll() {
         Result result = new Result();
@@ -36,7 +39,7 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
-    //新增周报
+    /**新增周报*/
     @Override
     public Result addReport(int student_number, String class_id, int teacher_num, String study_aim, String reason, String problem, String live, String next_aim) {
         Result result=new Result();
@@ -61,7 +64,7 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
-    //删除周报
+    /**删除周报*/
     @Override
     public Result deleteReportById(int reportId) {
         Result result = new Result();
@@ -77,7 +80,7 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
-    //更新周报
+    /**更新周报*/
     @Override
     public Result updateReport(int report_id, String study_aim, String reason, String problem, String live, String next_aim) {
         Result result=new Result();
@@ -103,6 +106,9 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
+    /**
+    * 根据学号查询
+    * */
     @Override
     public Result findByStudentNumber(int student_number) {
         Result result=new Result();
@@ -114,6 +120,7 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
+    /**根据班级号查询*/
     @Override
     public Result findByClassId(String class_id) {
         Result result=new Result();

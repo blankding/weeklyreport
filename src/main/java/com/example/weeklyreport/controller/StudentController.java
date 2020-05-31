@@ -14,13 +14,16 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+/**
+ * @author 丁鹏益
+ */
 @Controller
 @RequestMapping("/student")
 public class StudentController {
     @Resource
     private StudentService studentService;
 
-    //加载所有学生信息
+    /**加载所有学生信息*/
     @RequestMapping(value="/list",method= RequestMethod.GET)
     @ResponseBody
     public Result list() {
@@ -28,7 +31,7 @@ public class StudentController {
         return result;
     }
 
-    //新增学生
+    /**新增学生*/
     @RequestMapping(value="/add",method=RequestMethod.POST)
     @ResponseBody
     public Result add(int student_number,String class_id,String student_name,String email,String mobile,int sex){
@@ -36,14 +39,14 @@ public class StudentController {
         return result;
     }
 
-    //删除学生
+    /**删除学生*/
     @RequestMapping(value="/{StudentId}",method=RequestMethod.DELETE)
     @ResponseBody
     public Result deleteById(@PathVariable("StudentId") int StudentId){
         Result result=studentService.deleteStudentById(StudentId);
         return result;
     }
-    //更新学生信息
+    /**更新学生信息*/
     @RequestMapping(value="/updateById",method=RequestMethod.POST)
     @ResponseBody
     public Result updateById(int student_id,int student_number,String class_id,String student_name,String password,
@@ -52,7 +55,7 @@ public class StudentController {
         return result;
     }
 
-    //学生登录
+    /**学生登录*/
     @RequestMapping(value="/login",method=RequestMethod.POST)
     @ResponseBody
     public Result StudentLogin(int student_number, String password, HttpServletRequest request ){
@@ -65,7 +68,7 @@ public class StudentController {
         return result;
     }
 
-    //根据class_id查询信息
+    /**根据class_id查询信息*/
     @RequestMapping(value="/Unionlist",method= RequestMethod.POST)
     @ResponseBody
     public Result UnionList(String class_id) {

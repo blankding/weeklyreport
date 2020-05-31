@@ -6,6 +6,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.sql.Timestamp;
 
+/**
+ * @author 丁鹏益
+ * 学生实体类
+ */
 public class Student {
 
     private Integer student_id;
@@ -14,13 +18,13 @@ public class Student {
     private String student_name;
     private String password;
     private String email;
-    private Integer sex;//性别，0:男，1:女
+    private Integer sex;
     private String mobile;
     private String class_name;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    private Timestamp creatime;//创建时间
+    private Timestamp creatime;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    private Timestamp modifytime;//修改时间
+    private Timestamp modifytime;
 
     private BriefClass briefClass;
 

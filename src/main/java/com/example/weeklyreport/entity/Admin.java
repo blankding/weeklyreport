@@ -5,18 +5,22 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+/**
+ * @author 丁鹏益
+ * 管理员实体类
+ */
 public class Admin implements Serializable {
     private Integer admin_id;
     private String username;
     private String password;
     private String email;
-    //性别，0:男，1:女
+
     private Integer sex;
     private String mobile;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    private Timestamp creatime;//创建时间
+    private Timestamp creatime;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    private Timestamp modifytime;//修改时间
+    private Timestamp modifytime;
 
 
     public Integer getAdmin_id() {

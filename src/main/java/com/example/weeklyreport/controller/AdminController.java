@@ -20,6 +20,9 @@ import com.example.weeklyreport.entity.Admin;
 import com.example.weeklyreport.service.AdminService;
 import com.example.weeklyreport.util.Result;
 
+/**
+ * @author 丁鹏益
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -50,14 +53,6 @@ public class AdminController {
         return result;
     }
 
-//    @RequestMapping(value="/{adminId}",method=RequestMethod.PUT)
-//    @ResponseBody
-//    public Result updateById(@PathVariable("adminId") int adminId,
-//                             String username,String password,String email,int sex){
-//        Result result=adminService.updateAdmin(adminId, username, password, email, sex);
-//        return result;
-//    }
-
     @RequestMapping(value="/mobile_realName/{adminId}",method=RequestMethod.PUT)
     @ResponseBody
     public Result updateMobileAndRealName(@PathVariable("adminId") int adminId,
@@ -87,7 +82,7 @@ public class AdminController {
         return result;
     }
 
-    //根据id加载地址信息
+    /**根据id加载地址信息*/
     @RequestMapping(value="/list",method=RequestMethod.GET)
     @ResponseBody
     public ModelAndView list() {
@@ -101,7 +96,7 @@ public class AdminController {
         return mv;
     }
 
-    //根据id加载地址信息
+    /**根据id加载地址信息*/
     @RequestMapping(value="/updateview",method=RequestMethod.GET)
     @ResponseBody
     public ModelAndView updateview(int adminId){
@@ -141,7 +136,7 @@ public class AdminController {
         return result;
     }
 
-    //根据id加载地址信息
+    /**根据id加载地址信息*/
     @RequestMapping(value="/mainView",method=RequestMethod.GET)
     @ResponseBody
     public ModelAndView mainView(HttpServletRequest request){

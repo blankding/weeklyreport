@@ -6,7 +6,11 @@ import com.example.weeklyreport.entity.Teacher;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author 丁鹏益
+ */
 public interface TeacherDao {
+
     public int save(Teacher teacher);
     public List<Teacher> findAll();
     public int deleteById(int teacher_id);
