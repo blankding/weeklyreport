@@ -17,14 +17,13 @@ CREATE TABLE `ms_student` (
   `student_id` INT(11) NOT NULL AUTO_INCREMENT,
   `student_number` INT(11) NOT NULL,
   `class_id` INT(11) NOT NULL,
-  `uname` VARCHAR(50) NOT NULL,
+  `student_name` VARCHAR(50) NOT NULL,
   `password` VARCHAR(50) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
   `sex` SMALLINT(6) DEFAULT NULL,
   `mobile` VARCHAR(50) DEFAULT NULL,
-  `regtime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `lastlogin` TIMESTAMP NULL DEFAULT NULL,
-  `image` VARCHAR(255) DEFAULT NULL,
+  `creatime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modifytime` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`student_id`)
 ) ENGINE=INNODB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -35,9 +34,9 @@ CREATE TABLE `ms_student` (
 
 LOCK TABLES `ms_student` WRITE;
 /*!40000 ALTER TABLE `ms_student` DISABLE KEYS */;
-INSERT INTO ms_student(student_id,student_number,class_id,uname,PASSWORD,email,sex,mobile,regtime,lastlogin,image) 
-VALUES (1,'2017313101','313','admin','4QrcOUm6Wau+VuBX8g+IPg==','ls@qq.com',0,'13887432165',SYSDATE(),SYSDATE(),'');
-INSERT INTO `ms_student` VALUES (2,'2017313102','313','李四','4QrcOUm6Wau+VuBX8g+IPg==','ls@qq.com',0,'13887432165','2016-09-07 06:31:05',NULL,''),(3,'2017313103','313','王五','4QrcOUm6Wau+VuBX8g+IPg==','ww@qq.com',0,'13643218765','2016-09-07 06:32:50',NULL,'');
+INSERT INTO ms_student(student_id,student_number,class_id,student_name,PASSWORD,email,sex,mobile,regtime,lastlogin) 
+VALUES (1,'2017313101','313','admin','4QrcOUm6Wau+VuBX8g+IPg==','ls@qq.com',0,'13887432165',SYSDATE(),SYSDATE());
+INSERT INTO `ms_student` VALUES (2,'2017313102','313','李四','4QrcOUm6Wau+VuBX8g+IPg==','ls@qq.com',0,'13887432165','2016-09-07 06:31:05',NULL,''),(3,'2017313103','313','王五','4QrcOUm6Wau+VuBX8g+IPg==','ww@qq.com',0,'13643218765','2016-09-07 06:32:50',NULL);
 /*!40000 ALTER TABLE `ms_student` ENABLE KEYS */;
 UNLOCK TABLES;
 
