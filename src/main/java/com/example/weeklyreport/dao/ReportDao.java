@@ -21,4 +21,6 @@ public interface ReportDao {
     public List<Report> findUnion2(Map map);
     List<Report> findByStudentId(Map map);
     List<Report> findByClassId(Map map);
+    public int saveAnswer(Report report);
+    Report findByStudentNumber(int student_number);
 }

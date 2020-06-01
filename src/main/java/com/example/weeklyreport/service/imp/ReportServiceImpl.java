@@ -132,4 +132,19 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
+    @Override
+    public Result answerByStudentNumber(int student_number,String answer) {
+        Result result=new Result();
+        Report checkAdmin1=reportDao.findByStudentNumber(student_number);
+        Report report=new Report();
+        report.setStudent_number(student_number);
+        report.setAnswer(answer);
+        report.setCreatime(null);
+        report.setModifytime(null);
+        reportDao.saveAnswer(report);
+        result.setStatus(0);
+        result.setMsg("新增回答成功");
+        return result;
+    }
+
 }

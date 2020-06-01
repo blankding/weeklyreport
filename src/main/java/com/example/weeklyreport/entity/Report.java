@@ -20,6 +20,7 @@ public class Report {
     private String problem;
     private String live;
     private String next_aim;
+    private String answer;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Timestamp creatime;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
@@ -28,24 +29,22 @@ public class Report {
     public Report() {
     }
 
-    public Report(Integer report_id, Integer student_number, String class_id, Integer teacher_number, String student_aim, String reason, String problem, String live, String next, Timestamp creatime, Timestamp modifytime) {
+    public Report(Integer report_id, Integer student_number, String class_id, String class_name, String student_name, Integer teacher_num, String study_aim, String reason, String problem, String live, String next_aim, String answer, Timestamp creatime, Timestamp modifytime) {
         this.report_id = report_id;
         this.student_number = student_number;
         this.class_id = class_id;
-        this.teacher_num = teacher_number;
-        this.study_aim = student_aim;
+        this.class_name = class_name;
+        this.student_name = student_name;
+        this.teacher_num = teacher_num;
+        this.study_aim = study_aim;
         this.reason = reason;
         this.problem = problem;
         this.live = live;
-        this.next_aim = next;
+        this.next_aim = next_aim;
+        this.answer = answer;
         this.creatime = creatime;
         this.modifytime = modifytime;
     }
-
-    public Report(String student_name) {
-        this.student_name = student_name;
-    }
-
 
     public Integer getReport_id() {
         return report_id;
@@ -151,6 +150,14 @@ public class Report {
         this.class_name = class_name;
     }
 
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
     @Override
     public String toString() {
         return "Report{" +
@@ -165,6 +172,7 @@ public class Report {
                 ", problem='" + problem + '\'' +
                 ", live='" + live + '\'' +
                 ", next_aim='" + next_aim + '\'' +
+                ", answer='" + answer + '\'' +
                 ", creatime=" + creatime +
                 ", modifytime=" + modifytime +
                 '}';

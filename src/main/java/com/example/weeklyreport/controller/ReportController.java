@@ -69,4 +69,11 @@ public class ReportController {
         Result result=reportService.findByClassId(class_id);
         return result;
     }
+    /**添加回复*/
+    @RequestMapping(value="/answer",method=RequestMethod.POST)
+    @ResponseBody
+    public Result Answer(int student_number,String answer){
+        Result result=reportService.answerByStudentNumber(student_number, answer);
+        return result;
+    }
 }
