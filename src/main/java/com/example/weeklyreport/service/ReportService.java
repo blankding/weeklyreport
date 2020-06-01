@@ -21,7 +21,7 @@ public interface ReportService {
     Result updateReport(int report_id,String study_aim,String reason,String problem,
                          String live,String next_aim);
 
-    /**连表查询根据studentnumber*/
+    /**连表查询根据student_number*/
     Result findByStudentNumber(int student_number);
 
     /**连表查询根据class_id*/
