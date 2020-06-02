@@ -8,11 +8,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -30,6 +28,12 @@ public class AdminController {
     @Resource
     private AdminService adminService;
 
+    //打开所有html页面
+    @RequestMapping("/login")
+    public String html(){
+        return "login";
+    }
+
     @RequestMapping(method=RequestMethod.POST)
     @ResponseBody
     public Result add(String mobile,String realName,int roleId){
@@ -37,12 +41,12 @@ public class AdminController {
         return result;
     }
 
-    @RequestMapping(value="/login",method=RequestMethod.POST)
-    @ResponseBody
-    public Result checkLogin(String input,String password){
-        Result result=adminService.checkLogin(input, password);
-        return result;
-    }
+//    @RequestMapping(value="/login",method=RequestMethod.POST)
+//    @ResponseBody
+//    public Result checkLogin(String input,String password){
+//        Result result=adminService.checkLogin(input, password);
+//        return result;
+//    }
 
     @RequestMapping(value="/{adminId}",method=RequestMethod.GET)
     @ResponseBody
@@ -92,6 +96,7 @@ public class AdminController {
         return result;
     }
 
+    @CrossOrigin
     @RequestMapping(value="/adminLogin",method=RequestMethod.POST)
     @ResponseBody
     public Result adminLogin(String username, String password,HttpServletRequest request ){
@@ -102,6 +107,7 @@ public class AdminController {
         }
 
         return result;
+
     }
 
     @RequestMapping(value="/loginOut",method=RequestMethod.GET)

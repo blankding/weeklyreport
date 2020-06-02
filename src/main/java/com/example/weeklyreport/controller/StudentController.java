@@ -23,6 +23,13 @@ public class StudentController {
     @Resource
     private StudentService studentService;
 
+    //打开所有html页面
+    @RequestMapping("/student")
+    public String html(){
+
+        return "student";
+    }
+
     /**加载所有学生信息*/
     @RequestMapping(value="/list",method= RequestMethod.GET)
     @ResponseBody
