@@ -129,7 +129,6 @@ private StudentDao studentDao;
     @Override
     public Result checkLogin(int student_number, String password) {
         Result result=new Result();
-
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("student_number", student_number);
         Student student=studentDao.dynamicFind(map);

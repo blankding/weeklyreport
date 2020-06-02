@@ -90,4 +90,7 @@
     <select id="findByStudentNumber" resultType="com.example.weeklyreport.entity.Report">
 		select * from ms_report where student_number=#{student_number}
     </select>
+    <select id="countByClassId" resultType="com.example.weeklyreport.entity.Report">
+		SELECT COUNT(report_id) as report_count FROM ms_report WHERE class_id = #{class_id};
+    </select>
 </mapper>

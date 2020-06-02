@@ -21,18 +21,17 @@ import com.example.weeklyreport.util.Result;
 /**
  * @author 丁鹏益
  */
-@Controller
-@RequestMapping("/admin")
-public class AdminController {
-
+    @Controller
+    @RequestMapping("/admin")
+    public class AdminController {
     @Resource
     private AdminService adminService;
-
     //打开所有html页面
     @RequestMapping("/login")
     public String html(){
         return "login";
     }
+
 
     @RequestMapping(method=RequestMethod.POST)
     @ResponseBody

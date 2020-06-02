@@ -45,7 +45,6 @@ public class ReportServiceImpl implements ReportService {
         Result result=new Result();
         Map<String,Object> map=new HashMap<String,Object>();
         map.clear();
-
         Report report=new Report();
         report.setReport_id(null);
         report.setStudent_number(student_number);
@@ -114,6 +113,12 @@ public class ReportServiceImpl implements ReportService {
         Result result=new Result();
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("student_number", student_number);
+        Report checkAdmin1=reportDao.findByStudentNumber(student_number);
+        if(checkAdmin1==null){
+            result.setStatus(1);
+            result.setMsg("不存在此学生");
+            return result;
+        }
         result.setData(reportDao.findByStudentId(map));
         result.setStatus(0);
         result.setMsg("查询成功");
@@ -126,16 +131,28 @@ public class ReportServiceImpl implements ReportService {
         Result result=new Result();
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("class_id", class_id);
+        List checkAdmin1=reportDao.findByClassId(map);
+        if(checkAdmin1.size()==0){
+            result.setStatus(1);
+            result.setMsg("不存在此班级");
+            return result;
+        }
         result.setData(reportDao.findByClassId(map));
         result.setStatus(0);
         result.setMsg("查询成功");
         return result;
     }
 
+    /**根据学号回复*/
     @Override
     public Result answerByStudentNumber(int student_number,String answer) {
         Result result=new Result();
         Report checkAdmin1=reportDao.findByStudentNumber(student_number);
+        if(checkAdmin1==null){
+            result.setStatus(1);
+            result.setMsg("不存在此学生");
+            return result;
+        }
         Report report=new Report();
         report.setStudent_number(student_number);
         report.setAnswer(answer);
@@ -144,6 +161,23 @@ public class ReportServiceImpl implements ReportService {
         reportDao.saveAnswer(report);
         result.setStatus(0);
         result.setMsg("新增回答成功");
+        return result;
+    }
+
+    @Override
+    public Result countByClassId(String class_id) {
+        Result result=new Result();
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("class_id", class_id);
+        List checkAdmin1=reportDao.findByClassId(map);
+        if(checkAdmin1.size()==0){
+            result.setStatus(1);
+            result.setMsg("不存在此班级");
+            return result;
+        }
+        result.setData(reportDao.countByClassId(map));
+        result.setStatus(0);
+        result.setMsg("查询成功");
         return result;
     }
 

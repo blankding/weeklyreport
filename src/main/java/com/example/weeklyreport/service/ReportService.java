@@ -27,6 +27,8 @@ public interface ReportService {
     /**连表查询根据class_id*/
     Result findByClassId(String class_id);
 
-    /**连表查询根据class_id*/
+    /**教师回复*/
     Result answerByStudentNumber(int student_number,String answer);
+
+    Result countByClassId(String class_id);
 }

@@ -16,11 +16,16 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author 丁鹏益
  */
-@Controller
-@RequestMapping("/teacher")
-public class TeacherController {
-    @Resource
-    private TeacherService teacherService;
+    @Controller
+    @RequestMapping("/teacher")
+    public class TeacherController {
+        @Resource
+        private TeacherService teacherService;
+        //打开所有html页面
+        @RequestMapping("/teacher")
+        public String html(){
+            return "teacher";
+        }
 
     /**根据id加载地址信息*/
     @RequestMapping(value="/list",method= RequestMethod.GET)

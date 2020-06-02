@@ -21,6 +21,7 @@ public class Report {
     private String live;
     private String next_aim;
     private String answer;
+    private int report_count;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Timestamp creatime;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
@@ -158,6 +159,14 @@ public class Report {
         this.answer = answer;
     }
 
+    public int getReport_count() {
+        return report_count;
+    }
+
+    public void setReport_count(int report_count) {
+        this.report_count = report_count;
+    }
+
     @Override
     public String toString() {
         return "Report{" +
@@ -173,6 +182,7 @@ public class Report {
                 ", live='" + live + '\'' +
                 ", next_aim='" + next_aim + '\'' +
                 ", answer='" + answer + '\'' +
+                ", report_count=" + report_count +
                 ", creatime=" + creatime +
                 ", modifytime=" + modifytime +
                 '}';

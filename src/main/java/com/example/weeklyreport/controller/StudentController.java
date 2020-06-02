@@ -22,11 +22,9 @@ import java.util.Map;
 public class StudentController {
     @Resource
     private StudentService studentService;
-
     //打开所有html页面
     @RequestMapping("/student")
     public String html(){
-
         return "student";
     }
 
