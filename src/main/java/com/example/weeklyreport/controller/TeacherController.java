@@ -21,10 +21,9 @@ import javax.servlet.http.HttpServletRequest;
     public class TeacherController {
         @Resource
         private TeacherService teacherService;
-        //打开所有html页面
         @RequestMapping("/teacher")
         public String html(){
-            return "teacher";
+            return "teacher1";
         }
 
     /**根据id加载地址信息*/
@@ -63,6 +62,7 @@ import javax.servlet.http.HttpServletRequest;
     @RequestMapping(value="/login",method=RequestMethod.POST)
     @ResponseBody
     public Result checkLogin(int teacher_num, String password, HttpServletRequest request){
+        int teacher1 = teacher_num;
         Result result=teacherService.checkLogin(teacher_num,password);
         if(result.getStatus() == 0)
         {

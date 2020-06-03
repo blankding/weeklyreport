@@ -1,0 +1,17 @@
+.navTitle a{
+    color:#F5F5F5;
+    text-decoration: none;
+}
+
+.leftSide p{
+	 float:left; 
+	 line-height:80px;
+     color:#000;
+     margin-left:30px;
+     font-size:20px;
+}
+
+.leftSide li{
+	font-size:13px;
+	margin-left:5px;
+}

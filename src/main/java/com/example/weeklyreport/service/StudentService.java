@@ -18,7 +18,7 @@ public interface StudentService {
     Result updateStudent(int student_id,int student_number,String class_id,String student_name,String password,
                          String email,int sex,String mobile);
     /**学生登录验证*/
-    Result checkLogin(int student_number/**/,String password);
+    Result checkLogin(int student_number,String password);
     /**连表查询根据classid*/
     Result findByClassId(String class_id);
 }

@@ -52,10 +52,12 @@
     <select id="findUnion2" resultType="com.example.weeklyreport.entity.Report"></select>
     <select id="findByStudentId" parameterType="map"
             resultType="com.example.weeklyreport.entity.Report">
-        select ma.*,mr.student_name
+        select ma.*,mr.student_name,mc.class_name
         from ms_report ma
         join ms_student mr
         on ma.student_number=mr.student_number
+        join ms_class mc
+        on ma.class_id=mc.class_id
         <where>
             <if test="student_number!=null">
                 ma.student_number=#{student_number}
@@ -89,8 +91,5 @@
 		</update>
     <select id="findByStudentNumber" resultType="com.example.weeklyreport.entity.Report">
 		select * from ms_report where student_number=#{student_number}
-    </select>
-    <select id="countByClassId" resultType="com.example.weeklyreport.entity.Report">
-		SELECT COUNT(report_id) as report_count FROM ms_report WHERE class_id = #{class_id};
     </select>
 </mapper>

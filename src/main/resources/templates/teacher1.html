@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+    <head>
+      <meta charset="utf-8">
+      <title>江苏理工学院ICT线上周报系统</title>
+           <link rel="stylesheet" th:href="@{/static/css/teacher1.css}" />
+        <link rel="stylesheet" th:href="@{/static/css/public.css}" />
+      <link rel="stylesheet" th:href="@{/static/css/font-awesome/css/font-awesome.min.css}">
+    </head>
+    <body>
+     <div class="header">
+        <div class="logo">ICT线上周报系统</div>
+        <div class="title">
+          <ul>
+            <li class="">欢迎你</li>
+            <li class="logout"><i></i><a onclick="window.location.href='login.html'">退出</a></li>
+          </ul>
+        </div>
+     </div>
+     
+     <div class="content">
+         <div class="leftSide">
+               <div style="height:80px; width:200px; line-height:20px;">
+                   <img id="xh" th:src="@{/static/img/tx.png}" width="105" height="100" style="float:left">
+                <p style=" float:left; line-height:80px; color:#000;margin-left:30px;font-size:20px;">老师</p>
+                </div>
+                
+                <span class="fa fa-circle" style="padding-left:10px;color:#00FF7F;"></span><li class="on" style="font-size:13px;margin-left:5px;">在线</li>
+                <span class="fa fa-sign-in" style="margin-left:13px;"></span><li class="out" style="font-size:13px;margin-left:5px;"><a href="login.html">注销</a></li>
+             <ul class="nav">
+                <li >
+                  <h4 class="navTitle">
+                    <li><span class="fa fa-home"></span></li>
+                    <a href="#" style="color:#F5F5F5;text-decoration: none;">主页</a>
+                     
+                  </h4>
+                  <div class="item">
+                     <a onclick="window.location.href='introduction2'" id="goodLink">ICT线上周报系统简介</a>
+                  </div>
+                </li>
+                 <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-search (alias) " ></span>
+              <a onclick="window.location.href='teacher2'" style="color:#F5F5F5;text-decoration: none;" > 周报情况汇总 </a>
+                  </h4>
+                </li>
+                <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-edit (alias) " ></span>
+             <a onclick="window.location.href='teacher3'" style="color:#F5F5F5;text-decoration: none;"> 开始批阅 </a>
+                  </h4>
+                </li>
+             </ul>
+         </div>
+         </div>
+     </div>
+     
+   
+     
+     <div class="footer">
+       <p>@江苏理工学院ICT基地</p>
+     </div>
+
+      <script th:src="@{/static/js/jquery-3.1.1.js}" ></script>
+       <script  th:src="@{/static/session.js}" ></script>
+       <script  th:src="@{/static/js/main.js}"></script>
+    </body>
+</html>

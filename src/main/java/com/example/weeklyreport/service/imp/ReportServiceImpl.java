@@ -41,7 +41,7 @@ public class ReportServiceImpl implements ReportService {
 
     /**新增周报*/
     @Override
-    public Result addReport(int student_number, String class_id, int teacher_num, String study_aim, String reason, String problem, String live, String next_aim) {
+    public Result addReport(int student_number, String class_id, int teacher_num, String study_aim, String reason, String problem, String next_aim) {
         Result result=new Result();
         Map<String,Object> map=new HashMap<String,Object>();
         map.clear();
@@ -52,7 +52,6 @@ public class ReportServiceImpl implements ReportService {
         report.setClass_id(class_id);
         report.setStudent_aim(study_aim);
         report.setReason(reason);
-        report.setLive(live);
         report.setProblem(problem);
         report.setNext(next_aim);
         report.setCreatime(null);
@@ -164,6 +163,7 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
+    /**根据班级计数*/
     @Override
     public Result countByClassId(String class_id) {
         Result result=new Result();

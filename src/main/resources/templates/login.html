@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">>
+    <head>
+      <meta charset="utf-8">
+      <title>江苏理工学院ICT线上周报系统</title>
+ <link rel="stylesheet"  th:href="@{/static/css/login.css}" />
+    </head>
+    <body>
+    	<div class="title">
+      <p style="color:#F5F5F5 ; margin:10px 0 0 100px;font-size: 35px;">Weekly</p>
+      <button id="report" style="margin-left: 20px; margin-top:10px ">Report</button>
+      </div>
+    <div class="dad">
+      <div class="left">
+       <img id="xh" th:src="@{/static/img/XH.jpg}">
+      <h3 >江苏理工学院ICT基地线上周报系统</h3>
+      </div>
+      <div class="right">
+     	<div class="text">欢迎使用线上周报系统</div>
+      <div class="rightBottom">
+      <form action="">
+       <div class="textin">登录:</div>
+       <label>
+        <input class="in" type="text" id="userName" placeholder="请输入学号/工号">
+       </label>
+       <label>
+        <input class="in" type="password" id="password" placeholder="请输入密码">
+       </label>
+         <br>
+         <button type="submit" class="in login" id="submitBtn1" >学生登录</button>
+         <button type="submit" class="in login" id="submitBtn2" >教师登录</button>
+       </form>
+     
+      </div>
+      
+    </div>
+    
+      </div>
+       <script th:src="@{/static/js/jquery-3.1.1.js}" ></script>
+       <script  th:src="@{/static/js/login.js}"></script>
+    </body>
+      <div id="foot">
+       <h4>江苏理工学院ICT基地 </h4>
+       </div>
+</html>

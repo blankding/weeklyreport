@@ -13,7 +13,7 @@ public interface ReportService {
 
     /**新增周报*/
     public Result addReport(int student_number,String class_id,int teacher_num,String study_aim,String reason,
-                            String problem,String live,String next_aim);
+                            String problem,String next_aim);
     /**根据id删除周报*/
     Result deleteReportById(int reportId);
 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+      <meta charset="utf-8">
+      <title>江苏理工学院ICT线上周报系统</title>
+     <link rel="stylesheet" th:href="@{/static/css/student.css}" />
+      <link rel="stylesheet" th:href="@{/plug/font-awesome/css/font-awesome.min.css}">
+    </head>
+    <body>
+     <div class="header">
+        <div class="logo">ICT线上周报系统</div>
+        <div class="title">
+          <ul>
+            <li class="">欢迎你</li>
+            <li class="logout"><i></i><a onclick="window.location.href='login'">退出</a></li>
+          </ul>
+        </div>
+     </div>
+     
+     <div class="content">
+         <div class="leftSide">
+               <div style="height:80px; width:200px; line-height:20px;">
+                 <img id="xh" th:src="@{/static/img/tx.png}"  width="105" height="100" style="float:left">
+                <p style=" float:left; line-height:80px; color:#000;margin-left:30px;font-size:20px;">老师</p>
+                </div>
+                
+                <span class="fa fa-circle" style="padding-left:10px;color:#00FF7F;"></span><li class="on" style="font-size:13px;margin-left:5px;">在线</li>
+                <span class="fa fa-sign-in" style="margin-left:13px;"></span><li class="out" style="font-size:13px;margin-left:5px;"><a href="login.html">注销</a></li>
+             <ul class="nav">
+                <li >
+                  <h4 class="navTitle">
+                    <li><span class="fa fa-home"></span></li></span>
+               <a onclick="window.location.href='teacher1'" style="color:#F5F5F5;text-decoration: none;"> 主页</a>
+                  </h4>
+                  <div class="item">
+                     <a onclick="window.location.href='introduction2'" id="goodLink">ICT线上周报系统简介</a>
+                  </div>
+                </li>
+                 <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-search (alias) " ></span>
+              <a onclick="window.location.href='teacher2'" style="color:#F5F5F5;text-decoration: none;" > 周报情况汇总 </a>
+                  </h4>
+                </li>
+                <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-edit (alias) " ></span>
+             <a onclick="window.location.href='teacher3'" style="color:#F5F5F5;text-decoration: none;">  开始批阅    </a>
+                  </h4>
+                </li>
+             </ul>
+         </div>
+         
+         <div class="mainPanle" > 
+            <div  class="breadcrumbs">
+              <ul>
+                <li class="breadcrumb">欢迎您登录江苏理工学院ICT线上周报系统平台</li>        
+              </ul>
+            </div>
+            <div id="main" class="main">
+              <div class="mainCon" >
+                 <h2>简介</h2>
+                 <p>工作周报管理制度能够有效推进ICT产教融合基地对学生的各项管理工作，进一步了解学生的每周学习情况，进一步发挥对学生的职能作用，加强消息沟通与交流，便于老师能及时了解主要学习教学进展情况，ICT基地对学生实行管理工作周报制度，要求各班级同学每周日前报送本周学习情况以及学习进度安排，报送情况在周报上反应。  </p>
+                 <p>为克服周报组长人工收集学生上交不及时，周报内容格式多样化，以及老师手动查阅的繁琐步骤，现开发一个周报上传与管理系统，实现学生管理统一化，实现师生间周报传达的规范化，便捷化。</p>
+                 <h2>功能</h2>
+                 <p>学生通过前台系统登录页面利用学号密码登录至个人中心页面，在个人中心页面撰写周报后提交给老师，并可查看以往完成的周报；</p>
+                 <br><p>教师通过前台系统登录页面利用工号密码登录至个人中心页面，对学生的周报信息进行统一管理，统计周报上交情况、批阅周报、回复疑惑等；</p>
+                 <br><p>系统共包含主页登录界面，学生个人中心页面，学生撰写周报页面，学生查看周报页面，教师个人中心页面，教师周报汇总情况页面，教师回复疑惑页面；整个周报系统实现师生间周报传达的规范化，便捷化。  </p>
+              </div>
+              
+              </div>
+         </div>
+     </div>
+     <div class="footer">
+       <p>@江苏理工学院ICT基地</p>
+     </div>
+
+   <script th:src="@{/static/js/jquery-3.1.1.js}" ></script>
+        <script  th:src="@{/plug/session.js}" ></script>
+       <script  th:src="@{/static/js/main.js}"></script>
+    </body>
+</html>

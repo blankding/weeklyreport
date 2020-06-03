@@ -29,14 +29,14 @@ public class ReportController {
         return result;
     }
 
-    /**新增周报*/
-    @RequestMapping(value="/add",method=RequestMethod.POST)
-    @ResponseBody
-    public Result add(int student_number,String class_id,int teacher_num,String study_aim,String reason,
-                      String problem,String live,String next_aim){
-        Result result=reportService.addReport(student_number,class_id, teacher_num, study_aim,reason,problem,live,next_aim);
-        return result;
-    }
+//    /**新增周报*/
+//    @RequestMapping(value="/add",method=RequestMethod.POST)
+//    @ResponseBody
+//    public Result add(int student_number,String class_id,int teacher_num,String study_aim,String reason,
+//                      String problem,String live,String next_aim){
+//        Result result=reportService.addReport(student_number,class_id, teacher_num, study_aim,reason,problem,live,next_aim);
+//        return result;
+//    }
 
     /**删除周报*/
     @RequestMapping(value="/{ReportId}",method=RequestMethod.DELETE)
@@ -54,13 +54,13 @@ public class ReportController {
         return result;
     }
 
-    /**根据student_number查询信息*/
-    @RequestMapping(value="/studentNumber",method= RequestMethod.POST)
-    @ResponseBody
-    public Result UnionList(int student_number) {
-        Result result=reportService.findByStudentNumber(student_number);
-        return result;
-    }
+//    /**根据student_number查询信息*/
+//    @RequestMapping(value="/studentNumber",method= RequestMethod.POST)
+//    @ResponseBody
+//    public Result UnionList(int student_number) {
+//        Result result=reportService.findByStudentNumber(student_number);
+//        return result;
+//    }
 
     /**根据class_id查询信息*/
     @RequestMapping(value="/classId",method= RequestMethod.POST)
@@ -70,13 +70,13 @@ public class ReportController {
         return result;
     }
 
-    /**添加回复*/
-    @RequestMapping(value="/answer",method=RequestMethod.POST)
-    @ResponseBody
-    public Result Answer(int student_number,String answer){
-        Result result=reportService.answerByStudentNumber(student_number, answer);
-        return result;
-    }
+//    /**添加回复*/
+//    @RequestMapping(value="/answer",method=RequestMethod.POST)
+//    @ResponseBody
+//    public Result Answer(int student_number,String answer){
+//        Result result=reportService.answerByStudentNumber(student_number, answer);
+//        return result;
+//    }
 
     /**根据class_id计数周报数量*/
     @RequestMapping(value="/count",method= RequestMethod.POST)

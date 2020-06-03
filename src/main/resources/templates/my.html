@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+      <meta charset="utf-8">
+      <title>江苏理工学院ICT线上周报系统</title>
+    <link rel="stylesheet" th:href="@{/static/css/my.css}" />
+      <link rel="stylesheet" th:href="@{/static/css/font-awesome/css/font-awesome.min.css}">
+        <link rel="stylesheet" th:href="@{/static/css/public.css}" />
+    </head>
+    <body>
+     <div class="header">
+        <div class="logo">ICT线上周报系统</div>
+        <div class="title">
+          <ul>
+            <li class="">欢迎你</li>
+            <li class="logout"><i></i><a onclick="window.location.href='login.html'">退出</a></li>
+          </ul>
+        </div>
+     </div>
+     
+     <div class="content">
+         <div class="leftSide">
+               <div style="height:80px; width:200px; line-height:20px;">
+                  <img id="xh" th:src="@{/static/img/tx.png}" width="105" height="100" style="float:left">
+                <p style=" float:left; line-height:80px; color:#000;margin-left:30px;font-size:20px;"></p>
+                </div>
+                
+                <span class="fa fa-circle" style="padding-left:10px;color:#00FF7F;"></span><li class="on" style="font-size:13px;margin-left:5px;">在线</li>
+                <span class="fa fa-sign-in" style="margin-left:13px;"></span><li class="out" style="font-size:13px;margin-left:5px;"><a onclick="window.location.href='login.html'">注销</a></li>
+             <ul class="nav">
+                <li >
+                  <h4 class="navTitle">
+                    <li><span class="fa fa-home"></span></li></span>
+                     <a onclick="window.location.href='student'" style="color:#F5F5F5;text-decoration: none;">主页</a>
+                  </h4>
+                  <div class="item">
+                     <a onclick="window.location.href='introduction'" id="goodLink">ICT线上周报系统简介</a>
+                  </div>
+                </li>
+                 <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-edit (alias) " ></span>
+              <a onclick="window.location.href='write'" style="color:#F5F5F5;text-decoration: none;" > 撰写周报   </a>
+                  </h4>
+                </li>
+                <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-search (alias) " ></span>
+             <a onclick="window.location.href='my'" style="color:#F5F5F5;text-decoration: none;">  我的周报 </a>
+                  </h4>
+                </li>
+             </ul>
+         </div>
+         
+         <div class="mainPanle" >  
+            <div  class="breadcrumbs">
+               <ul>
+                 <li  style="margin-left:20px;">周报名称：<input class="search" type="text" id="search" placeholder=""> <span class="fa fa-search"></span><a href="#" style="margin-left:10px;text-decoration: none;">搜索</a></li>       
+              </ul>
+            </div>
+            <div class="breadcrumb">
+              <li class="name">周报名称</li> 
+               <li class="time">创建时间</li>
+                <li class="operate">操作</li> 
+            </div>
+            <div class="datas" style="height:400px;">
+            <div class="data1" >
+              <ul style="height:50px;">
+                <p class="name1" style="text-align:center;float:left;margin-left:100px;margin-top:30px;font-size:15px;">6月份第一周周报</p>
+                <p class="time1" style="text-align:center;float:left;margin-left:250px;margin-top:30px;font-size:15px;">时间XXX</p>
+                <button class="edit" id="editBtn" style="width:50px;margin-left:800px;margin-top:-25px;float:left;background:#1E90FF;border-radius: 8px;font-size:14px;text-decoration: none; color:#000000 ">编辑</button>                 
+               <button class="delete" id="deleteBtn" style="width:50px;margin-left:860px;background:#CD5C5C;float:left;margin-top:-24.5px;border-radius: 8px;font-size:14px;text-decoration: none; color:#000000 ">删除</button>
+            </ul>
+            </div> 
+              <div class="data1" >
+              <ul style="height:50px;">
+                <p class="name1" style="text-align:center;float:left;margin-left:100px;margin-top:30px;font-size:15px;">6月份第二周周报</a></p>
+                <p class="time1" style="text-align:center;float:left;margin-left:250px;margin-top:30px;font-size:15px;">时间XXX</p>
+                <button class="edit" id="editBtn" style="width:50px;margin-left:800px;margin-top:-25px;float:left;background:#1E90FF;border-radius: 8px;font-size:14px;text-decoration: none; color:#000000 ">编辑</button>                 
+               <button class="delete" id="deleteBtn" style="width:50px;margin-left:860px;background:#CD5C5C;float:left;margin-top:-24.5px;border-radius: 8px;font-size:14px;text-decoration: none; color:#000000 ">删除</button>
+            </ul>
+            </div> 
+                <div class="data1" >
+              <ul style="height:50px;">
+                <p class="name1" style="text-align:center;float:left;margin-left:100px;margin-top:30px;font-size:15px;" >6月份第三周周报</p>
+                <p class="time1" style="text-align:center;float:left;margin-left:250px;margin-top:30px;font-size:15px;">时间XXX</p>
+                <button class="edit" id="editBtn" style="width:50px;margin-left:800px;margin-top:-25px;float:left;background:#1E90FF;border-radius: 8px;font-size:14px;text-decoration: none; color:#000000 ">编辑</button>                 
+               <button class="delete" id="deleteBtn" style="width:50px;margin-left:860px;background:#CD5C5C;float:left;margin-top:-24.5px;border-radius: 8px;font-size:14px;text-decoration: none; color:#000000 ">删除</button>
+            </ul>
+            </div> 
+            <div class="data1" >
+              <ul style="height:50px;">
+                <p class="name1" style="text-align:center;float:left;margin-left:100px;margin-top:30px;font-size:15px;">6月份第四周周报</p>
+                <p class="time1" style="text-align:center;float:left;margin-left:250px;margin-top:30px;font-size:15px;">时间XXX</p>
+                <button class="edit" id="editBtn" style="width:50px;margin-left:800px;margin-top:-25px;float:left;background:#1E90FF;border-radius: 8px;font-size:14px;text-decoration: none; color:#000000 ">编辑</button>                 
+               <button class="delete" id="deleteBtn" style="width:50px;margin-left:860px;background:#CD5C5C;float:left;margin-top:-24.5px;border-radius: 8px;font-size:14px;text-decoration: none; color:#000000 ">删除</button>
+            </ul>
+            </div> 
+             </div>  
+           </div>
+           </div>
+     
+  
+     
+     <div class="footer">
+       <p>@江苏理工学院ICT基地</p>
+     </div>
+<script th:src="@{/static/js/jquery-3.1.1.js}" ></script>
+       <script  th:src="@{/static/js/session.js}" ></script>
+       <script  th:src="@{/static/js/main.js}"></script>
+    </body>
+</html>
