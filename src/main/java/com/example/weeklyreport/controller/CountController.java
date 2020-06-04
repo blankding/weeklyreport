@@ -21,4 +21,6 @@ public class CountController {
         return "teacher2";
     }
 
+
+
 }

@@ -119,6 +119,38 @@ public class TeacherServiceImpl implements TeacherService {
         return result;
     }
 
+    /**修改密码*/
+    @Override
+    public Result updatePass(int teacher_num, String old_password, String new_password) {
+        Result result=new Result();
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("teacher_num", teacher_num);
+        Teacher checkAdmin1=teacherDao.dynamicFind(map);
+        if(checkAdmin1==null){
+            result.setStatus(1);
+            result.setMsg("不存在此老师");
+            return result;
+        }
+
+        if(!MSUtil.md5(old_password).equals(checkAdmin1.getPassword())) {
+            result.setStatus(1);
+            result.setMsg("原密码错误");
+            return result;
+        }
+
+        Teacher teacher=new Teacher();
+        teacher.setTeacher_num(teacher_num);
+        teacher.setPassword(MSUtil.md5(new_password));;
+        Timestamp now=new Timestamp(System.currentTimeMillis());
+        teacher.setModifytime(now);
+        teacherDao.updatePWD(teacher);
+        result.setStatus(0);
+        result.setMsg("更新老师密码成功");
+        result.setMsg(new_password);
+        return result;
+    }
+
+
     /**老师登录*/
     @Override
     public Result checkLogin(int teacher_num, String password) {

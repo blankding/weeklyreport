@@ -110,14 +110,14 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Result findByStudentNumber(int student_number) {
         Result result=new Result();
+//        Student checkAdmin1=studentDao.findBynumber(student_number);
+//        if(checkAdmin1.equals(null)){
+//            result.setStatus(1);
+//            result.setMsg("不存在此学生");
+//            return result;
+//        }
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("student_number", student_number);
-        Report checkAdmin1=reportDao.findByStudentNumber(student_number);
-        if(checkAdmin1==null){
-            result.setStatus(1);
-            result.setMsg("不存在此学生");
-            return result;
-        }
         result.setData(reportDao.findByStudentId(map));
         result.setStatus(0);
         result.setMsg("查询成功");
@@ -163,7 +163,7 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
-    /**根据班级计数*/
+    /**根据班级计数(当前周)*/
     @Override
     public Result countByClassId(String class_id) {
         Result result=new Result();
@@ -175,10 +175,26 @@ public class ReportServiceImpl implements ReportService {
             result.setMsg("不存在此班级");
             return result;
         }
-        result.setData(reportDao.countByClassId(map));
+        int classId = Integer.parseInt(class_id);
+        result.setData(reportDao.countByClassId(classId));
         result.setStatus(0);
         result.setMsg("查询成功");
         return result;
     }
 
+    /**根据学号查询（本周）*/
+    @Override
+    public Result findByStudentNum(int student_number) {
+        Result result=new Result();
+        List checkAdmin1=reportDao.findBystudentNum(student_number);
+        if(checkAdmin1.size()==0){
+            result.setStatus(1);
+            result.setMsg("不存在此学生");
+            return result;
+        }
+        result.setData(reportDao.findBystudentNum(student_number));
+        result.setStatus(0);
+        result.setMsg("查询成功");
+        return result;
+    }
 }

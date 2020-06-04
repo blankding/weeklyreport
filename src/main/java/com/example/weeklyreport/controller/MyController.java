@@ -24,8 +24,7 @@ public class MyController {
     /**根据student_number查询信息*/
     @RequestMapping(value="/studentNumber",method= RequestMethod.POST)
     @ResponseBody
-    public Result UnionList(int student_num) {
-        int student_number =student_num;
+    public Result UnionList(int student_number) {
         Result result=reportService.findByStudentNumber(student_number);
         return result;
     }

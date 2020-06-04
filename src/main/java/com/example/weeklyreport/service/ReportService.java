@@ -30,5 +30,9 @@ public interface ReportService {
     /**教师回复*/
     Result answerByStudentNumber(int student_number,String answer);
 
+    /**根据班级号查询本周提交人数*/
     Result countByClassId(String class_id);
+
+    /**根据学号查询本周提交周报*/
+    Result findByStudentNum(int student_number);
 }

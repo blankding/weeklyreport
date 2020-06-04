@@ -49,13 +49,27 @@
         </set>
         where teacher_id=#{teacher_id}
     </update>
+
+    <update id="updatePWD"  parameterType="com.example.weeklyreport.entity.Teacher">
+        update ms_teacher
+        <set>
+            <if test="PASSWORD!=null">
+                PASSWORD=#{PASSWORD},
+            </if>
+
+        <if test="modifytime!=null">
+            modifytime=#{modifytime}
+        </if>
+    </set>
+        where teacher_num=#{teacher_num}
+    </update>
+
     <select id="dynamicFind" resultType="com.example.weeklyreport.entity.Teacher">
         select * from ms_teacher
         <where>
             <if test="teacher_num!=null">
                 teacher_num=#{teacher_num}
             </if>
-
         </where>
     </select>
 

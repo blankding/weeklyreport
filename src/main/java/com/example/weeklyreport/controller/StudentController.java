@@ -73,6 +73,14 @@ public class StudentController {
         return result;
     }
 
+    /**修改密码*/
+    @RequestMapping(value="/changePWD",method=RequestMethod.POST)
+    @ResponseBody
+    public Result Change(int student_number, String old_password, String new_password){
+        Result result=studentService.updatePass(student_number, old_password, new_password);
+        return result;
+    }
+
     /**根据class_id查询信息*/
     @RequestMapping(value="/Unionlist",method= RequestMethod.POST)
     @ResponseBody

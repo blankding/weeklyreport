@@ -1,7 +1,8 @@
 $(document).ready(function(){
+    console.log( $("#submitBtn4"))
     $("#submitBtn4").on("click",function(e){
-        e.preventDefault();
-        e.stopPropagation();
+        // e.preventDefault();
+        // e.stopPropagation();
         //获取表格中填写的信息
         var studentNumber=$("#student_number").val().trim();
         var intnum = parseInt(studentNumber);
@@ -14,10 +15,17 @@ $(document).ready(function(){
         },    //参数值
         type:"POST",   //请求方式
         success:function(data){
-            var a = JSON.parse(data);
+            alert("1")
             //i表示在data中的索引位置，n表示包含的信息的对象
-            alert(a);
 
+            $('#name').html(data[0].student_number)
+            $('#student_num').html(data[0].student_number)
+            $('#class').html(data[0].class_id)
+            $('#date').html(data[0].creatime)
+            $('#aim').html(data[0].study_aim)
+            $('#reason').html(data[0].reason)
+            $('#problem').html(data[0].problem)
+            $('#next_aim').html(data[0].next_aim)
         },
         error:function(){
             alert("提交失败！")

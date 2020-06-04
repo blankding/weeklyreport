@@ -22,5 +22,6 @@ public interface ReportDao {
     List <Report> findByClassId(Map<String, Object> map);
     public int saveAnswer(Report report);
     Report findByStudentNumber(int student_number);
-    List<Report> countByClassId(Map map);
+    int countByClassId(int class_id);
+    List<Report> findBystudentNum(int student_number);
 }

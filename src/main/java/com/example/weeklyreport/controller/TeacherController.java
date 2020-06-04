@@ -70,4 +70,12 @@ import javax.servlet.http.HttpServletRequest;
         }
         return result;
     }
+
+    /**修改密码*/
+    @RequestMapping(value="/changePWD",method=RequestMethod.POST)
+    @ResponseBody
+    public Result Change(int teacher_num, String old_password, String new_password){
+        Result result=teacherService.updatePass(teacher_num, old_password, new_password);
+        return result;
+    }
 }
