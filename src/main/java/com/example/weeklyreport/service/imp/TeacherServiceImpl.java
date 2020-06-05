@@ -157,7 +157,7 @@ public class TeacherServiceImpl implements TeacherService {
         Result result=new Result();
         if("".equals(teacher_num)){
             result.setStatus(1);
-            result.setMsg("输入的学号为空");
+            result.setMsg("输入的教工号为空");
             return result;
         }
         Map<String,Object> map=new HashMap<String,Object>();

@@ -1,35 +1,106 @@
 $(document).ready(function(){
-	$("inquiryBtn").on("click",function(e){
-		e.preventDefault(); //阻止a元素发生默认行为
-		//jQuery方法实现
-var className = $("#className").val().trim();
-var committed = $("#committed").val().trim();		   			
-var uncommitted = $("#uncommitted").val().trim();
-var data = {"committed":committed,"className":className,"uncommitted":uncommitted};
-var url = "http://localhost:8080/MobileShop/admin_manager";
-	
+	$("#inquiryBtn").on("click",function(e){
+//。。。。。。。。。。。。。。。。。。。。。	这是一句密码   			
 		$.ajax({
 			type:"post",
-		    data:data,
-		    url:url,
-	        timeout:2000,
-	        beforeSend:function(){ //请求前运行的函数
-	        	
-	        },
-	        complete:function(){  //请求完成时运行的函数
-	        	
-	        },
+            dataType:"json",   //返回格式为json
+            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+		    data:{
+		   "class_id":313//
+		    },
+		    url:"/report/count",
 	        success:function(result){  //请求成功时运行的函数
 	        	console.log(result)
 	        	if(result.status==0){
+	        	$('.one_number').html(result.data)
+	        	var num=38
+	        	$('.one_numbers').html(num-result.data) 
 	        		//请求成功后，跳转到管理系统首页
-	        		window.location.href="teacher2.html";
+	        		//window.location.href="teacher2.html";
 	        	}
 	        },
-	        fail:function(){  //请求失败时运行的函数
+	        error:function(){  //请求失败时运行的函数
 	        	
 	        }
 		})
+		
+		
+			$.ajax({
+			type:"post",
+            dataType:"json",   //返回格式为json
+            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+		    data:{
+		   "class_id":314//
+		    },
+		    url:"/report/count",
+	        success:function(result){  //请求成功时运行的函数
+	        	console.log(result)
+	        	if(result.status==0){
+	        	$('.two_number').html(result.data)
+	        	var num1=39
+	        	$('.two_numbers').html(num1-result.data) 
+	        		//请求成功后，跳转到管理系统首页
+	        		//window.location.href="teacher2.html";
+	        	}
+	        },
+	        error:function(){  //请求失败时运行的函数
+	        	
+	        }
+		})
+		
+		
+		
+		
+			$.ajax({
+			type:"post",
+            dataType:"json",   //返回格式为json
+            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+		    data:{
+		   "class_id":315//
+		    },
+		    url:"/report/count",
+	        success:function(result){  //请求成功时运行的函数
+	        	console.log(result)
+	        	if(result.status==0){
+	        	$('.three_number').html(result.data)
+	        	var num2=39
+	        	$('.three_numbers').html(num2-result.data) 
+	        		//请求成功后，跳转到管理系统首页
+	        		//window.location.href="teacher2.html";
+	        	}
+	        },
+	        error:function(){  //请求失败时运行的函数
+	        	
+	        }
+		})
+		
+		
+		
+		
+		  $.ajax({
+			type:"post",
+            dataType:"json",   //返回格式为json
+            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+		    data:{
+		   "class_id":316//
+		    },
+		    url:"/report/count",
+	        success:function(result){  //请求成功时运行的函数
+	        	console.log(result)
+	        	if(result.status==0){
+	        	$('.four_number').html(result.data)
+	        	var num3=40
+	        	$('.four_numbers').html(num3-result.data) 
+	        		//请求成功后，跳转到管理系统首页
+	        		//window.location.href="teacher2.html";
+	        	}
+	        },
+	        error:function(){  //请求失败时运行的函数
+	        	
+	        }
+		})
+		
+		
 	})
 })
 

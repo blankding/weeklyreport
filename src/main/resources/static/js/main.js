@@ -1,8 +1,8 @@
 /* 
 * @Author: Marte
 * @Date:   2016-12-08 15:16:40
-* @Last Modified by:   Marte
-* @Last Modified time: 2016-12-12 10:58:22
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2020-06-04 10:38:46
 */
 
 $(document).ready(function(){
@@ -22,3 +22,4 @@ $(document).ready(function(){
 
    
 })
+$('#names').html(window.sessionStorage.getItem('username'))

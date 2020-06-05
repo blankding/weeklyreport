@@ -24,4 +24,6 @@ public interface ReportDao {
     Report findByStudentNumber(int student_number);
     int countByClassId(int class_id);
     List<Report> findBystudentNum(int student_number);
+    List <Report> findOldWeek (Map<String, Object> map);
+    List<Report> findBystudentNumMonth (int student_number);
 }

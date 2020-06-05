@@ -8,24 +8,25 @@ $(document).ready(function(){
         var intnum = parseInt(studentNumber);
         alert(studentNumber)
     $.ajax({
-        url:"/student/studentNumber" ,    //请求的url地址
+        url:"/report/weekreport" ,    //请求的url地址
         dataType:"json",   //返回格式为json
         async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-        data:{"student_num":intnum,
+        data:{"student_number":intnum,
         },    //参数值
         type:"POST",   //请求方式
         success:function(data){
-            alert("1")
+        	console.log(data.data[0])
+            // var a = JSON.parse(data);
             //i表示在data中的索引位置，n表示包含的信息的对象
-
-            $('#name').html(data[0].student_number)
-            $('#student_num').html(data[0].student_number)
-            $('#class').html(data[0].class_id)
-            $('#date').html(data[0].creatime)
-            $('#aim').html(data[0].study_aim)
-            $('#reason').html(data[0].reason)
-            $('#problem').html(data[0].problem)
-            $('#next_aim').html(data[0].next_aim)
+            //alert(a);
+            $('#name').html(data.data[0].student_name)
+            $('#student_num').html(data.data[0].student_number)
+            $('#class').html(data.data[0].class_id)
+            $('#date').html(data.data[0].creatime)
+            $('#aim').html(data.data[0].student_aim)
+            $('#reason').html(data.data[0].reason)
+            $('#problem').html(data.data[0].problem)
+            $('#next_aim').html(data.data[0].next)
         },
         error:function(){
             alert("提交失败！")
@@ -69,3 +70,4 @@ $(document).ready(function(){
     })
 
 })
+

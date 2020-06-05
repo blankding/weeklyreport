@@ -35,4 +35,10 @@ public interface ReportService {
 
     /**根据学号查询本周提交周报*/
     Result findByStudentNum(int student_number);
+
+    /**根据班级号查询上周提交周报*/
+    Result findByClassIdOld(String class_id);
+
+    /**根据学号查询本月提交周报*/
+    Result findByStudentNumMonth(int student_number);
 }

@@ -124,7 +124,7 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
-    /**根据班级号查询*/
+    /**根据班级号查询(本周）*/
     @Override
     public Result findByClassId(String class_id) {
         Result result=new Result();
@@ -192,7 +192,44 @@ public class ReportServiceImpl implements ReportService {
             result.setMsg("不存在此学生");
             return result;
         }
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("student_number", student_number);
         result.setData(reportDao.findBystudentNum(student_number));
+        result.setStatus(0);
+        result.setMsg("查询成功");
+        return result;
+    }
+
+    /**根据班级号查询(上周）*/
+    @Override
+    public Result findByClassIdOld(String class_id) {
+        Result result=new Result();
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("class_id", class_id);
+        List checkAdmin1=reportDao.findByClassId(map);
+        if(checkAdmin1.size()==0){
+            result.setStatus(1);
+            result.setMsg("不存在此班级");
+            return result;
+        }
+        result.setData(reportDao.findOldWeek(map));
+        result.setStatus(0);
+        result.setMsg("查询成功");
+        return result;
+    }
+
+    @Override
+    public Result findByStudentNumMonth(int student_number) {
+        Result result=new Result();
+        List checkAdmin1=reportDao.findBystudentNum(student_number);
+        if(checkAdmin1.size()==0){
+            result.setStatus(1);
+            result.setMsg("不存在此学生");
+            return result;
+        }
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("student_number", student_number);
+        result.setData(reportDao.findBystudentNumMonth(student_number));
         result.setStatus(0);
         result.setMsg("查询成功");
         return result;

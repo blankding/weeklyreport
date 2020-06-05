@@ -58,10 +58,11 @@ import javax.servlet.http.HttpServletRequest;
         return result;
     }
 
-    /**老师登录*/
+    /**老师登录
+     * HttpServletRequest request*/
     @RequestMapping(value="/login",method=RequestMethod.POST)
     @ResponseBody
-    public Result checkLogin(int teacher_num, String password, HttpServletRequest request){
+    public Result checkLogin(int teacher_num, String password,HttpServletRequest request){
         int teacher1 = teacher_num;
         Result result=teacherService.checkLogin(teacher_num,password);
         if(result.getStatus() == 0)

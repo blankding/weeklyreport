@@ -75,6 +75,8 @@
             <if test="class_id!=null">
                 ma.class_id=#{class_id}
             </if>
+
+            and YEARWEEK(DATE_FORMAT(ma.creatime,'%Y-%m-%d')) = YEARWEEK(NOW())
         </where>
     </select>
     <update id="saveAnswer" parameterType="com.example.weeklyreport.entity.Report">
@@ -93,10 +95,29 @@
 		select * from ms_report where student_number=#{student_number}
     </select>
     <select id="countByClassId" resultType="java.lang.Integer">
-		select count(*) from ms_report where class_id=#{class_id} and creatime>=DATE_ADD(CURDATE(),INTERVAL -WEEKDAY(CURDATE()) DAY)
+		select count(*) from ms_report where class_id=#{class_id} and YEARWEEK(DATE_FORMAT(creatime,'%Y-%m-%d')) = YEARWEEK(NOW())
     </select>
 
     <select id="findBystudentNum" resultType="com.example.weeklyreport.entity.Report">
-		select * from ms_report where student_number=#{student_number} and creatime>=DATE_ADD(CURDATE(),INTERVAL -WEEKDAY(CURDATE()) DAY)
+		select *,mr.student_name from ms_report ma join ms_student mr
+        on ma.student_number=mr.student_number where
+       YEARWEEK(DATE_FORMAT(ma.creatime,'%Y-%m-%d')) = YEARWEEK(NOW())
+        and  ma.student_number=#{student_number}
+
+    </select>
+
+    <select id="findOldWeek" resultType="com.example.weeklyreport.entity.Report">
+		SELECT *,mr.student_name FROM ms_report ma JOIN ms_student mr ON ma.`student_number`=mr.`student_number`
+		WHERE ma.class_id =#{class_id} AND YEARWEEK(DATE_FORMAT(ma.creatime,'%Y-%m-%d')) = YEARWEEK(NOW())-1;
+
+
+    </select>
+
+    <select id="findBystudentNumMonth" resultType="com.example.weeklyreport.entity.Report">
+		select *,mr.student_name from ms_report ma join ms_student mr
+        on ma.student_number=mr.student_number where
+         DATE_FORMAT( ma.creatime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+        and  ma.student_number=#{student_number}
+
     </select>
 </mapper>

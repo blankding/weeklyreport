@@ -39,12 +39,13 @@ public class ReportController {
 //    }
 
     /**删除周报*/
-    @RequestMapping(value="/{ReportId}",method=RequestMethod.DELETE)
+    @RequestMapping(value="/DeleteReportId",method=RequestMethod.POST)
     @ResponseBody
-    public Result deleteById(@PathVariable("ReportId") int ReportId){
+    public Result deleteById( int ReportId){
         Result result=reportService.deleteReportById(ReportId);
         return result;
     }
+
     /**更新周报*/
     @RequestMapping(value="/updateById",method=RequestMethod.POST)
     @ResponseBody
@@ -54,7 +55,7 @@ public class ReportController {
         return result;
     }
 
-    /**根据class_id查询信息*/
+    /**根据class_id查询本周信息*/
     @RequestMapping(value="/classId",method= RequestMethod.POST)
     @ResponseBody
     public Result UnionList(String class_id) {
@@ -62,7 +63,7 @@ public class ReportController {
         return result;
     }
 
-    /**根据class_id计数周报数量*/
+    /**根据class_id计数本周周报数量*/
     @RequestMapping(value="/count",method= RequestMethod.POST)
     @ResponseBody
     public Result countReport(String class_id) {
@@ -75,6 +76,22 @@ public class ReportController {
     @ResponseBody
     public Result weekReport(int student_number) {
         Result result=reportService.findByStudentNum(student_number);
+        return result;
+    }
+
+    /**根据class_id查询上周信息*/
+    @RequestMapping(value="/classIdOld",method= RequestMethod.POST)
+    @ResponseBody
+    public Result OldWeek(String class_id) {
+        Result result=reportService.findByClassIdOld(class_id);
+        return result;
+    }
+
+    /**根据student_number查看本月周报*/
+    @RequestMapping(value="/Student_numberMonth",method= RequestMethod.POST)
+    @ResponseBody
+    public Result MonthReport(int student_number) {
+        Result result=reportService.findByStudentNumMonth(student_number);
         return result;
     }
 }

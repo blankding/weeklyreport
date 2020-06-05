@@ -24,8 +24,11 @@ $(document).ready(function(){
                          //请求前的处理
                      },
                  success:function(data){
+                	 console.log()
                          if (data.status==0) {
                              window.location.href = "/student/student";
+                             window.sessionStorage.setItem('username',data.data.student_name)
+                                window.sessionStorage.setItem('studennum',username)
                          }else {
                              alert("密码或账户有误")
                          }
@@ -42,7 +45,7 @@ $(document).ready(function(){
 $("#submitBtn2").on("click",function(e){
     var username=$("#userName").val().trim();
     var password=$("#password").val().trim();
-    alert("1")
+ //  alert("1")
     $.ajax({
         url:"teacher/login" ,    //请求的url地址
         dataType:"json",   //返回格式为json
@@ -54,8 +57,12 @@ $("#submitBtn2").on("click",function(e){
             //请求前的处理
         },
         success:function(data){
+        	 
             if (data.status==0) {
                 window.location.href = "/teacher/teacher";
+            	  window.sessionStorage.setItem('username',data.data.teacher_name)
+            	  
+            
             }else {
                 alert("密码或账户有误")
             }
