@@ -26,11 +26,18 @@ import com.example.weeklyreport.util.Result;
     public class AdminController {
     @Resource
     private AdminService adminService;
-    //打开所有html页面
+
+
+    /**
+     *  打开所有html页面
+     * @return
+     */
     @RequestMapping("/login")
     public String html(){
         return "login";
     }
+
+
 
 
 
