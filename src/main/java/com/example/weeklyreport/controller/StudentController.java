@@ -22,6 +22,11 @@ import java.util.Map;
 public class StudentController {
     @Resource
     private StudentService studentService;
+    //打开所有html页面
+    @RequestMapping("/student")
+    public String html(){
+        return "student";
+    }
 
     /**加载所有学生信息*/
     @RequestMapping(value="/list",method= RequestMethod.GET)
@@ -65,6 +70,14 @@ public class StudentController {
             request.getSession().setAttribute("adminInfo", result.getData());
         }
 
+        return result;
+    }
+
+    /**修改密码*/
+    @RequestMapping(value="/changePWD",method=RequestMethod.POST)
+    @ResponseBody
+    public Result Change(int student_number, String old_password, String new_password){
+        Result result=studentService.updatePass(student_number, old_password, new_password);
         return result;
     }
 

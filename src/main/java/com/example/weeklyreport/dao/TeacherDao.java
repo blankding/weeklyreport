@@ -16,6 +16,7 @@ public interface TeacherDao {
     public int deleteById(int teacher_id);
     public Teacher findById(int teacher_id);
     public int dynamicUpdate(Teacher teacher);
+    int updatePWD(Teacher teacher);
     public Teacher dynamicFind(Map map);
     public List<Teacher> findUnion();
 

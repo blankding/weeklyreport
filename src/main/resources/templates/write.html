@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+      <meta charset="utf-8">
+      <title>江苏理工学院ICT线上周报系统</title>
+        <link rel="stylesheet" th:href="@{/static/css/write.css}" />
+        <link rel="stylesheet" th:href="@{/static/css/public.css}" />
+        <link rel="stylesheet" th:href="@{/static/css/font-awesome/css/font-awesome.min.css}">
+    </head>
+    <body>
+     <div class="header">
+        <div class="logo">ICT线上周报系统</div>
+        <div class="title">
+          <ul>
+            <li class="">欢迎你</li>
+            <li class="logout"><i></i><a onclick="window.location.href='/'">退出</a></li>
+          </ul>
+        </div>
+     </div>
+     
+     <div class="content">
+         <div class="leftSide">
+               <div style="height:80px; width:200px; line-height:20px;">
+                 <img id="xh" th:src="@{/static/img/tx.png}" width="105" height="100" style="float:left">
+                <p id="names" style=" float:left; line-height:80px; color:#000;margin-left:30px;font-size:20px;"></p>
+                </div>
+                
+                <span class="fa fa-circle" style="padding-left:10px;color:#00FF7F;"></span><li class="on" style="font-size:13px;margin-left:5px;">在线</li>
+                <span class="fa fa-sign-in" style="margin-left:13px;"></span><li class="out" style="font-size:13px;margin-left:5px;"><a onclick="window.location.href='/'">注销</a></li>
+             <ul class="nav">
+                <li >
+                  <h4 class="navTitle">
+                    <li><span class="fa fa-home"></span></li></span>
+                   <a onclick="window.location.href='student'" style="color:#F5F5F5;text-decoration: none;">主页</a>
+                  </h4>
+                  <div class="item">
+                     <a onclick="window.location.href='introduction'" id="goodLink">ICT线上周报系统简介</a>
+                  </div>
+                </li>
+                 <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-edit (alias) " ></span>
+              <a onclick="window.location.href='write'" style="color:#F5F5F5;text-decoration: none;" > 撰写周报</a>
+                  </h4>
+                </li>
+                <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-search (alias) " ></span>
+             <a onclick="window.location.href='my'" style="color:#F5F5F5;text-decoration: none;">我的周报</a>
+                  </h4>
+                </li>
+             </ul>
+         </div>
+         
+         <div class="mainPanle" > 
+            <div  class="breadcrumbs">
+              <ul>
+                <li class="breadcrumb">学生周报</li>        
+              </ul>
+            </div>
+            <div id="table" class="tb">
+                 <table width="900px" height="395px" border="1" cellpadding="0" cellspacing="0"  style="margin:0 auto";>
+                 <tr>
+                   <th width="10%">学号</th>
+                   <td width="20%" id="student_Number" contentEditable="true"></td>
+                   <th width="10%" >班级</th>
+                   <td width="20%" id="class" contentEditable="true"></td>
+                   <th width="10%" >教师工号</th>
+                   <td id="teacher_Num" contentEditable="true"></td>
+                   </tr>
+                 
+                     <tr>
+                       <th colspan="6" align="left" >本学期主要学习目标及达成成就:</th>
+                     </tr>
+                     <tr>
+                       <td colspan="6" id="study_Aim" contentEditable="true"><br><br></td>
+                     </tr>
+                     <tr>
+                       <th colspan="6" align="left">未达成原因:</th>
+                     </tr>
+                     <tr>
+                       <td colspan="6" id="Reason" contentEditable="true"><br><br></td>
+                     </tr>
+                     <tr>
+                       <th colspan="6" align="left">需要解决的困惑:</th>
+                     </tr>
+                     <tr>
+                       <td colspan="6" id="Problem" contentEditable="true"><br><br></td>
+                     </tr>
+                     <tr>
+                       <th colspan="6" align="left" >下周学习计划与目标:</th>
+                     </tr>
+                     <tr>
+                       <td colspan="6"  id="next_Aim" contentEditable="true"><br><br></td>
+                     </tr>
+               </table> 
+              
+              </div>
+             <button type="submit" class="in login" id="submitBtn" style="margin-left:850px;margin-top:15px;font-size:16px;text-decoration: none; color:#000000;border-radius:8px;">提交周报</button>
+         </div>
+     </div>
+     
+    
+     
+     <div class="footer">
+       <p>@江苏理工学院ICT基地</p>
+     </div>
+         <script th:src="@{/static/js/jquery-3.1.1.js}" ></script>
+         <script  th:src="@{/static/js/main.js}"></script>
+         <script  th:src="@{/static/js/write.js}"></script>
+    </body>
+</html>

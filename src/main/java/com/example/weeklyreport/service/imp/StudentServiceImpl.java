@@ -3,6 +3,7 @@ package com.example.weeklyreport.service.imp;
 import com.example.weeklyreport.dao.StudentDao;
 import com.example.weeklyreport.entity.Admin;
 import com.example.weeklyreport.entity.Student;
+import com.example.weeklyreport.entity.Teacher;
 import com.example.weeklyreport.service.StudentService;
 import com.example.weeklyreport.util.MSUtil;
 import com.example.weeklyreport.util.Result;
@@ -17,6 +18,7 @@ import java.util.Map;
 /**
  * @author 丁鹏益
  */
+
 @Service
 public class StudentServiceImpl implements StudentService {
 
@@ -33,6 +35,20 @@ private StudentDao studentDao;
         result.setData(students);
         result.setStatus(0);
         result.setMsg("查询成功");
+        return result;
+    }
+
+    @Override
+    public Result findByNumber(int student_number) {
+        Result result=new Result();
+        Student checkAdmin1=studentDao.findBynumber(student_number);
+        if (checkAdmin1==null){
+            result.setStatus(1);
+            result.setMsg("不存在此学生");
+            return result;
+        }
+        result.setStatus(0);
+        result.setMsg("查询学生成功");
         return result;
     }
 
@@ -68,7 +84,7 @@ private StudentDao studentDao;
         Student checkAdmin1 = studentDao.findById(studentId);
         if (checkAdmin1 == null) {
             result.setStatus(1);
-            result.setMsg("不存在此管理员");
+            result.setMsg("不存在此学生");
             return result;
         }
         studentDao.deleteById(studentId);
@@ -124,12 +140,40 @@ private StudentDao studentDao;
         return result;
     }
 
+    /**修改密码*/
+    @Override
+    public Result updatePass(int student_number, String old_password, String new_password) {
+        Result result=new Result();
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("student_number", student_number);
+        Student checkAdmin1=studentDao.dynamicFind(map);
+        if(checkAdmin1==null){
+            result.setStatus(1);
+            result.setMsg("不存在此学生");
+            return result;
+        }
+
+        if(!MSUtil.md5(old_password).equals(checkAdmin1.getPassword())) {
+            result.setStatus(1);
+            result.setMsg("原密码错误");
+            return result;
+        }
+
+        Student student=new Student();
+        student.setStudent_number(student_number);
+        student.setPassword(MSUtil.md5(new_password));;
+        Timestamp now=new Timestamp(System.currentTimeMillis());
+        student.setModifytime(now);
+        studentDao.dynamicUpdate(student);
+        result.setStatus(0);
+        result.setMsg("更新学生密码成功");
+        return result;
+    }
 
     /**学生登录*/
     @Override
     public Result checkLogin(int student_number, String password) {
         Result result=new Result();
-
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("student_number", student_number);
         Student student=studentDao.dynamicFind(map);

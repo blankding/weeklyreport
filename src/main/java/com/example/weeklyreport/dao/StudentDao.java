@@ -22,4 +22,5 @@ public interface StudentDao {
 
     public List<Student> findUnion2(Map map);
     List<Student> findByClassId(Map map);
+    Student findBynumber(int student_number);
 }

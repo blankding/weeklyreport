@@ -104,16 +104,6 @@ public class AdminServiceImpl implements AdminService {
         result.setMsg("更新管理员基本信息成功");
         return result;
     }
-
-    @Override
-    public Result updateMobileAndRealName(int adminId, String mobile, String realName) {
-        return null;
-    }
-
-    @Override
-    public Result loadAllAdmin() {
-        return null;
-    }
     /**加载管理员信息*/
     @Override
     public Result loadAdminById(int adminId) {
@@ -157,15 +147,6 @@ public class AdminServiceImpl implements AdminService {
         return result;
     }
 
-    @Override
-    public Result addAdmin2(String username, String email, String realName, String mobile, int roleId) {
-        return null;
-    }
-
-    @Override
-    public Result updateAdmin2(int adminId, String username, String realName, String email, String mobile, int sex) {
-        return null;
-    }
     /**管理员登录*/
     @Override
     public Result adminLogin(String username, String password) {
@@ -176,15 +157,6 @@ public class AdminServiceImpl implements AdminService {
         return check(password,admin);
     }
 
-    @Override
-    public Result updatePass(int adminId, String old_password, String new_password) {
-        return null;
-    }
-
-    @Override
-    public Result dynamicFind2(Map map) {
-        return null;
-    }
     /**新增管理员*/
     @Override
     public Result addAdmin3(String username, String email, String mobile, int sex) {
@@ -209,10 +181,10 @@ public class AdminServiceImpl implements AdminService {
 
         Admin admin=new Admin();
         admin.setAdmin_id(null);
-        admin.setUsername(username);//默认username为空
-        admin.setPassword(MSUtil.md5("111111"));//默认密码为六个1
-        admin.setEmail(email);//默认email为空
-        admin.setSex(sex);//默认为男
+        admin.setUsername(username);
+        admin.setPassword(MSUtil.md5("111111"));
+        admin.setEmail(email);
+        admin.setSex(sex);
         admin.setMobile(mobile);
         admin.setCreatime(null);
         admin.setModifytime(null);
@@ -222,10 +194,5 @@ public class AdminServiceImpl implements AdminService {
         return result;
     }
 
-
-    @Override
-    public Result findUnion2(Map map) {
-        return null;
-    }
 
 }

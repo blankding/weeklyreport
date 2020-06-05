@@ -16,11 +16,15 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author 丁鹏益
  */
-@Controller
-@RequestMapping("/teacher")
-public class TeacherController {
-    @Resource
-    private TeacherService teacherService;
+    @Controller
+    @RequestMapping("/teacher")
+    public class TeacherController {
+        @Resource
+        private TeacherService teacherService;
+        @RequestMapping("/teacher")
+        public String html(){
+            return "teacher1";
+        }
 
     /**根据id加载地址信息*/
     @RequestMapping(value="/list",method= RequestMethod.GET)
@@ -54,15 +58,25 @@ public class TeacherController {
         return result;
     }
 
-    /**老师登录*/
+    /**老师登录
+     * HttpServletRequest request*/
     @RequestMapping(value="/login",method=RequestMethod.POST)
     @ResponseBody
-    public Result checkLogin(int teacher_num, String password, HttpServletRequest request){
+    public Result checkLogin(int teacher_num, String password,HttpServletRequest request){
+        int teacher1 = teacher_num;
         Result result=teacherService.checkLogin(teacher_num,password);
         if(result.getStatus() == 0)
         {
             request.getSession().setAttribute("adminInfo", result.getData());
         }
+        return result;
+    }
+
+    /**修改密码*/
+    @RequestMapping(value="/changePWD",method=RequestMethod.POST)
+    @ResponseBody
+    public Result Change(int teacher_num, String old_password, String new_password){
+        Result result=teacherService.updatePass(teacher_num, old_password, new_password);
         return result;
     }
 }

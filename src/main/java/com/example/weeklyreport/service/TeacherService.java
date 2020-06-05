@@ -20,4 +20,6 @@ public interface TeacherService {
                          String email,String mobile);
     /**老师登录验证*/
     Result checkLogin(int teacher_num,String password);
+    /**老师更改密码*/
+    Result updatePass(int teacher_num, String old_password, String new_password);
 }

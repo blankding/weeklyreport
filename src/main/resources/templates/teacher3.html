@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+      <meta charset="utf-8">
+      <title>江苏理工学院ICT线上周报系统</title>
+      <link rel="stylesheet" th:href="@{/static/css/teacher3.css}" />
+        <link rel="stylesheet" th:href="@{/static/css/public.css}" />
+      <link rel="stylesheet" th:href="@{/static/css/font-awesome/css/font-awesome.min.css}">
+    </head>
+    </head>
+    <body>
+     <div class="header">
+        <div class="logo">ICT线上周报系统</div>
+        <div class="title">
+          <ul>
+            <li class="">欢迎你</li>
+            <li class="logout"><i></i><a onclick="window.location.href='/'">退出</a></li>
+          </ul>
+        </div>
+     </div>
+     
+     <div class="content">
+         <div class="leftSide">
+               <div style="height:80px; width:200px; line-height:20px;">
+                   <img id="xh" th:src="@{/static/img/tx.png}" width="105" height="100" style="float:left">
+                <p id="names" style=" float:left; line-height:80px; color:#000;margin-left:30px;font-size:20px;"></p>
+                </div>
+                
+                <span class="fa fa-circle" style="padding-left:10px;color:#00FF7F;"></span><li class="on" style="font-size:13px;margin-left:5px;">在线</li>
+                <span class="fa fa-sign-in" style="margin-left:13px;"></span><li class="out" style="font-size:13px;margin-left:5px;"><a onclick="window.location.href='/'">注销</a></li>
+             <ul class="nav">
+                <li >
+                  <h4 class="navTitle">
+                    <li><span class="fa fa-home"></span></li>
+                    <a onclick="window.location.href='teacher'" style="color:#F5F5F5;text-decoration: none;">主页</a>
+                     
+                  </h4>
+                  <div class="item">
+                     <a onclick="window.location.href='introduction2'" id="goodLink">ICT线上周报系统简介</a>
+                  </div>
+                </li>
+                 <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-search (alias) " ></span>
+              <a onclick="window.location.href='teacher2'" style="color:#F5F5F5;text-decoration: none;" > 周报情况汇总 </a>
+                  </h4>
+                </li>
+                <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-edit (alias) " ></span>
+             <a onclick="window.location.href='teacher3'" style="color:#F5F5F5;text-decoration: none;"> 开始批阅 </a>
+                  </h4>
+                </li>
+             </ul>
+         </div>
+         
+         <div class="mainPanle" > 
+            <div  class="breadcrumbs">
+              <ul>
+                
+                <li class="breadcrumb">学生周报查看</li>        
+              </ul>
+            </div>
+            <div id="main" class="main" >
+              <div class="mainCon" style="height: 420px;">
+              <fieldset>
+                    <h3>请输入学生学号：</h3>
+                    <input type="text" class="search" id="student_number" placeholder="请输入学号">
+                     <input type="submit" name="查询" id="submitBtn4" value="确认" style="margin-left:10px;">
+
+                     
+
+                   </fieldset>
+
+              <fieldset style="height: 370px;">
+
+               <table  width="500px" height="340px" border="1" cellpadding="0" cellspacing="0" id="tablequery" style="margin-left: 40px;">
+                 <caption>学生周报</caption>
+                 <tr>
+                   <th width="10%">姓名</th>
+                   <td width="20%" id="name"></td>
+                   <th width="10%">学号</th>
+                   <td width="20%" id="student_num"></td>
+                   <th width="10%">班级</th>
+                   <td id="class"></td>
+                   </tr>
+                   <tr>
+                     <th>日期</th>
+                     <td colspan="2" id="date"></td>
+                     </tr>
+                     <tr>
+                       <th colspan="6">本学期主要学习目标及达成成就</th>
+                     </tr>
+                     <tr>
+                       <td colspan="6" id="aim"><br><br></td>
+                     </tr>
+                     <tr>
+                       <th colspan="6">未达成原因</th>
+                     </tr>
+                     <tr>
+                       <td colspan="6" id="reason"><br><br></td>
+                     </tr>
+                     <tr>
+                       <th colspan="6">需要解决的困惑</th>
+                     </tr>
+                     <tr>
+                       <td colspan="6" id="problem"><br><br></td>
+                     </tr>
+                     <tr>
+                       <th colspan="6">下周学习计划与目标</th>
+                     </tr>
+                     <tr>
+                       <td colspan="6" id="next_aim"><br><br></td>
+                     </tr>
+               </table> 
+                <br>
+                <div class="answer" style="float: right;">
+                <h4 style="margin-top:-300px";>回复疑惑:</h4><br>
+                <textarea name="suggest" id="answer" cols="40" rows="8" ></textarea><br>
+               <input type="submit" id="submitBtn3" value="提交" name="提交" >
+               <br>
+               <input type="submit" value="下一位" name="提交" style="margin-top: 50px;">
+               </div>
+                <button onclick="window.location.href='teacher'" style=" font-size:14px;text-decoration:none;margin-top:-135px;float: right;width:72px;height:26px;" id="submitBtn">结束批阅</button>
+    </fieldset>
+
+              </div>
+              
+              </div>
+         </div>
+     </div>
+     
+     <div class="footer">
+       <p>@江苏理工学院ICT基地</p>
+     </div>
+
+        <script th:src="@{/static/js/jquery-3.1.1.js}" ></script>
+         <script th:src="@{/static/js/main.js}" ></script>
+       <script  th:src="@{/static/js/teacher3.js}"></script>
+    </body>
+</html>

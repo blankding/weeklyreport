@@ -8,11 +8,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -23,21 +21,19 @@ import com.example.weeklyreport.util.Result;
 /**
  * @author 丁鹏益
  */
-@Controller
-@RequestMapping("/admin")
-public class AdminController {
-
+    @Controller
+    @RequestMapping("/admin")
+    public class AdminController {
     @Resource
     private AdminService adminService;
-
-
-    @RequestMapping(value="/add2",method=RequestMethod.POST)
-    @ResponseBody
-    public Result add2(String username,String email,String realName,String mobile,int roleId){
-
-        Result result=adminService.addAdmin2(username,email,realName,mobile,  roleId);
-        return result;
+    //打开所有html页面
+    @RequestMapping("/login")
+    public String html(){
+        return "login";
     }
+
+
+
 
     @RequestMapping(method=RequestMethod.POST)
     @ResponseBody
@@ -46,27 +42,12 @@ public class AdminController {
         return result;
     }
 
-    @RequestMapping(value="/login",method=RequestMethod.POST)
-    @ResponseBody
-    public Result checkLogin(String input,String password){
-        Result result=adminService.checkLogin(input, password);
-        return result;
-    }
-
-    @RequestMapping(value="/mobile_realName/{adminId}",method=RequestMethod.PUT)
-    @ResponseBody
-    public Result updateMobileAndRealName(@PathVariable("adminId") int adminId,
-                                          String mobile,String realName){
-        Result result=adminService.updateMobileAndRealName(adminId, mobile, realName);
-        return result;
-    }
-
-    @RequestMapping(method=RequestMethod.GET)
-    @ResponseBody
-    public Result loadAll(){
-        Result result=adminService.loadAllAdmin();
-        return result;
-    }
+//    @RequestMapping(value="/login",method=RequestMethod.POST)
+//    @ResponseBody
+//    public Result checkLogin(String input,String password){
+//        Result result=adminService.checkLogin(input, password);
+//        return result;
+//    }
 
     @RequestMapping(value="/{adminId}",method=RequestMethod.GET)
     @ResponseBody
@@ -109,14 +90,6 @@ public class AdminController {
         return mv;
     }
 
-    @RequestMapping(value="/updateById2",method=RequestMethod.POST)
-    @ResponseBody
-    public Result updateById2(int adminId,
-                              String username,String realName,String email,String mobile,int sex){
-        Result result=adminService.updateAdmin2(adminId, username, realName, email,mobile, sex);
-        return result;
-    }
-
     @RequestMapping(value="/deleteById2",method=RequestMethod.GET)
     @ResponseBody
     public Result deleteById2(int adminId){
@@ -124,6 +97,7 @@ public class AdminController {
         return result;
     }
 
+    @CrossOrigin
     @RequestMapping(value="/adminLogin",method=RequestMethod.POST)
     @ResponseBody
     public Result adminLogin(String username, String password,HttpServletRequest request ){
@@ -134,25 +108,7 @@ public class AdminController {
         }
 
         return result;
-    }
 
-    /**根据id加载地址信息*/
-    @RequestMapping(value="/mainView",method=RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView mainView(HttpServletRequest request){
-
-        ModelAndView mv=new ModelAndView();
-        mv.setViewName("mainView");
-        mv.addObject("admin", request.getSession().getAttribute("adminInfo"));
-
-        return mv;
-    }
-
-    @RequestMapping(value="/updatePass",method=RequestMethod.POST)
-    @ResponseBody
-    public Result updatePass(int adminId,String old_password,String new_password){
-        Result result=adminService.updatePass(adminId, old_password, new_password);
-        return result;
     }
 
     @RequestMapping(value="/loginOut",method=RequestMethod.GET)
