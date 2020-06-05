@@ -6,15 +6,15 @@ import com.example.weeklyreport.entity.Report;
 import com.example.weeklyreport.entity.Student;
 import com.example.weeklyreport.entity.Teacher;
 import com.example.weeklyreport.service.ReportService;
+import com.example.weeklyreport.util.DateUtil;
 import com.example.weeklyreport.util.MSUtil;
 import com.example.weeklyreport.util.Result;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author 丁鹏益
@@ -234,4 +234,22 @@ public class ReportServiceImpl implements ReportService {
         result.setMsg("查询成功");
         return result;
     }
+
+    @Override
+    public Result findByMonth(String date, String stuNo) {
+        Result result=new Result();
+        Map<String,Object> parmater=new HashMap<>(2);
+        parmater.put("realMonth", DateUtil.getDateOfStr(date));
+        parmater.put("student_number",stuNo);
+        List<Report> reports=reportDao.findByMonth(parmater);
+        if (CollectionUtils.isEmpty(reports)){
+            result.setStatus(1);
+            result.setMsg("无"+date+"报表");
+            return result;
+        }
+        result.setData(reports);
+        result.setMsg("SUCCESS");
+        return result;
+    }
+
 }

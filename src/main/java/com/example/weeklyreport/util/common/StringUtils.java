@@ -1,4 +1,4 @@
-package com.example.weeklyreport.util;
+package com.example.weeklyreport.util.common;
 
 /**
  * <br>

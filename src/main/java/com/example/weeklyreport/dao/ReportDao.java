@@ -26,4 +26,11 @@ public interface ReportDao {
     List<Report> findBystudentNum(int student_number);
     List <Report> findOldWeek (Map<String, Object> map);
     List<Report> findBystudentNumMonth (int student_number);
+
+    /**
+     *    按年月查询
+     * @param map key="realMonth"
+     * @return
+     */
+    List<Report> findByMonth(Map<String,Object> map);
 }

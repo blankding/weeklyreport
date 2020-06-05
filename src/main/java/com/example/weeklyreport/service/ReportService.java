@@ -41,4 +41,12 @@ public interface ReportService {
 
     /**根据学号查询本月提交周报*/
     Result findByStudentNumMonth(int student_number);
+
+    /**
+     *  根据年月查报表
+     * @param date
+     * @param stuNo
+     * @return
+     */
+    Result findByMonth(String date, String stuNo);
 }

@@ -120,4 +120,12 @@
         and  ma.student_number=#{student_number}
 
     </select>
+
+    <select id="findByMonth" resultType="com.example.weeklyreport.entity.Report" parameterType="map">
+		select *,mr.student_name from ms_report ma join ms_student mr
+        on ma.student_number=mr.student_number where
+         DATE_FORMAT( ma.creatime, '%Y%m' ) = DATE_FORMAT( realMoth , '%Y%m' )
+        and  ma.student_number=#{student_number}
+    </select>
+
 </mapper>
