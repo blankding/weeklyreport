@@ -3,16 +3,17 @@ package com.example.weeklyreport.controller;
 
 import com.example.weeklyreport.service.StudentService;
 import com.example.weeklyreport.util.Result;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+
 
 /**
  * @author 丁鹏益
@@ -28,7 +29,9 @@ public class StudentController {
         return "student";
     }
 
-    /**加载所有学生信息*/
+    /**
+     * 加载所有学生信息
+     * */
     @RequestMapping(value="/list",method= RequestMethod.GET)
     @ResponseBody
     public Result list() {
@@ -36,7 +39,9 @@ public class StudentController {
         return result;
     }
 
-    /**新增学生*/
+    /**
+     * 新增学生
+     * */
     @RequestMapping(value="/add",method=RequestMethod.POST)
     @ResponseBody
     public Result add(int student_number,String class_id,String student_name,String email,String mobile,int sex){
@@ -44,14 +49,19 @@ public class StudentController {
         return result;
     }
 
-    /**删除学生*/
+    /**
+     * 删除学生
+     * */
     @RequestMapping(value="/{StudentId}",method=RequestMethod.DELETE)
     @ResponseBody
     public Result deleteById(@PathVariable("StudentId") int StudentId){
         Result result=studentService.deleteStudentById(StudentId);
         return result;
     }
-    /**更新学生信息*/
+
+    /**
+     * 更新学生信息
+     * */
     @RequestMapping(value="/updateById",method=RequestMethod.POST)
     @ResponseBody
     public Result updateById(int student_id,int student_number,String class_id,String student_name,String password,
@@ -60,20 +70,23 @@ public class StudentController {
         return result;
     }
 
-    /**学生登录*/
+    /**
+     * 学生登录
+     * */
     @RequestMapping(value="/login",method=RequestMethod.POST)
     @ResponseBody
     public Result StudentLogin(int student_number, String password, HttpServletRequest request ){
         Result result=studentService.checkLogin(student_number,password);
-        if(result.getStatus() == 0)
-        {
+        if(result.getStatus() == 0) {
             request.getSession().setAttribute("adminInfo", result.getData());
         }
 
         return result;
     }
 
-    /**修改密码*/
+    /**
+     * 修改密码
+     * */
     @RequestMapping(value="/changePWD",method=RequestMethod.POST)
     @ResponseBody
     public Result Change(int student_number, String old_password, String new_password){
@@ -81,7 +94,9 @@ public class StudentController {
         return result;
     }
 
-    /**根据class_id查询信息*/
+    /**
+     * 根据class_id查询信息
+     * */
     @RequestMapping(value="/Unionlist",method= RequestMethod.POST)
     @ResponseBody
     public Result UnionList(String class_id) {

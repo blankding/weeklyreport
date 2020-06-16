@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
-        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.weeklyreport.dao.StudentDao">
     <!-- 缓存配置-->
@@ -55,13 +55,15 @@
     </select>
     <select id="dynamicFind" parameterType="map"
             resultType="com.example.weeklyreport.entity.Student">
-        select * from ms_student
+        select ms.*, mc.class_name from ms_student as ms
+        left join ms_class as mc
+        on ms.class_id = mc.class_id
         <where>
             <if test="student_number!=null">
-                student_number=#{student_number}
+                ms.student_number=#{student_number}
             </if>
             <if test="student_name!=null">
-                and student_name=#{student_name}
+                and ms.student_name=#{student_name}
             </if>
         </where>
     </select>
@@ -103,8 +105,6 @@
                 <result property="class_name" column="class_name"/>
             </association>
         </resultMap>
-    <select id="findUnion" resultType="com.example.weeklyreport.entity.Student"></select>
-    <select id="dynamicFind2" resultType="com.example.weeklyreport.entity.Student"></select>
-    <select id="findUnion2" resultType="com.example.weeklyreport.entity.Student"></select>
+
 
 </mapper>

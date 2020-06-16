@@ -2,11 +2,11 @@ $(document).ready(function(){
 	$("#inquiryBtn").on("click",function(e){
 //。。。。。。。。。。。。。。。。。。。。。	这是一句密码   			
 		$.ajax({
-			type:"post",
+			type:"get",
             dataType:"json",   //返回格式为json
             async:true,//请求是否异步，默认为异步，这也是ajax重要特性
 		    data:{
-		   "class_id":313//
+		   "class_id":1//
 		    },
 		    url:"/report/count",
 	        success:function(result){  //请求成功时运行的函数
@@ -26,11 +26,11 @@ $(document).ready(function(){
 		
 		
 			$.ajax({
-			type:"post",
+			type:"get",
             dataType:"json",   //返回格式为json
             async:true,//请求是否异步，默认为异步，这也是ajax重要特性
 		    data:{
-		   "class_id":314//
+		   "class_id":2//
 		    },
 		    url:"/report/count",
 	        success:function(result){  //请求成功时运行的函数
@@ -52,11 +52,11 @@ $(document).ready(function(){
 		
 		
 			$.ajax({
-			type:"post",
+			type:"get",
             dataType:"json",   //返回格式为json
             async:true,//请求是否异步，默认为异步，这也是ajax重要特性
 		    data:{
-		   "class_id":315//
+		   "class_id":3//
 		    },
 		    url:"/report/count",
 	        success:function(result){  //请求成功时运行的函数
@@ -78,11 +78,11 @@ $(document).ready(function(){
 		
 		
 		  $.ajax({
-			type:"post",
+			type:"get",
             dataType:"json",   //返回格式为json
             async:true,//请求是否异步，默认为异步，这也是ajax重要特性
 		    data:{
-		   "class_id":316//
+		   "class_id":4//
 		    },
 		    url:"/report/count",
 	        success:function(result){  //请求成功时运行的函数

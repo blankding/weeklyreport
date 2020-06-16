@@ -83,26 +83,7 @@ public class TeacherServiceImpl implements TeacherService {
             result.setMsg("不存在此老师");
             return result;
         }
-        if(!"".equals(teacher_name)){
-            Map<String,Object> map=new HashMap<String,Object>();
-            map.put("teacher_name", teacher_name);
-            Teacher checkAdmin2=teacherDao.dynamicFind(map);
-            if(checkAdmin2!=null && !teacher_name.equals(checkAdmin1.getTeacher_name())){
-                result.setStatus(1);
-                result.setMsg("老师已经存在");
-                return result;
-            }
-        }
-        if(!"".equals(email)){
-            Map<String,Object> map=new HashMap<String,Object>();
-            map.put("email", email);
-            Teacher checkAdmin2=teacherDao.dynamicFind(map);
-            if(checkAdmin2!=null && !email.equals(checkAdmin1.getEmail())){
-                result.setStatus(1);
-                result.setMsg("邮箱已经存在");
-                return result;
-            }
-        }
+
         Teacher teacher=new Teacher();
         teacher.setTeacher_id(teacher_id);
         teacher.setTeacher_num(teacher_num);
@@ -146,7 +127,7 @@ public class TeacherServiceImpl implements TeacherService {
         teacherDao.updatePWD(teacher);
         result.setStatus(0);
         result.setMsg("更新老师密码成功");
-        result.setMsg(new_password);
+
         return result;
     }
 

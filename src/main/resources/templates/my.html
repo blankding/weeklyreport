@@ -82,7 +82,7 @@
            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
            data:{
         	
-        	   student_num: window.sessionStorage.getItem('studennum')
+        	   student_number: window.sessionStorage.getItem('studennum')
            },
            type:"POST",   //请求方式
            success:function(data){
@@ -96,7 +96,7 @@
             	  console.log(data[i])
             	  	htm+=` <div class="data1" style='margin-top:20px !important; ' >
                         <ul style="height:50px;">
-                        <span>${data[i].student_number}</span>
+                        <span>${data[i].creatime}</span>
                         <button style='margin-left:50px !important;background: #CD5C5C;' data-id='${data[i].report_id}' class="delete" id="deleteBtn" style="width:50px;margin-left:860px;background:#CD5C5C;float:left;margin-top:55px;border-radius: 8px;font-size:14px;text-decoration: none; color:#000000 ">删除</button>
                      </ul>
                      </div> `
@@ -109,7 +109,7 @@
 				var cid = $(this).attr("data-id");
 
 		        $.ajax({
-		        	url:"/report/DeleteReportId",    //请求的url地址 
+		        	url:"/report/DeleteReportId",    //请求的url地址
 		            dataType:"json",   //返回格式为json
 		            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
 		            data:{
@@ -143,4 +143,5 @@
     
   			
        </script>
+    </body>
 </html>

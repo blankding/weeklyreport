@@ -103,26 +103,7 @@ private StudentDao studentDao;
             result.setMsg("不存在此学生");
             return result;
         }
-        if(!"".equals(student_name)){
-            Map<String,Object> map=new HashMap<String,Object>();
-            map.put("student_name", student_name);
-            Student checkAdmin2=studentDao.dynamicFind(map);
-            if(checkAdmin2!=null && !student_name.equals(checkAdmin1.getStudent_name())){
-                result.setStatus(1);
-                result.setMsg("学生已经存在");
-                return result;
-            }
-        }
-        if(!"".equals(email)){
-            Map<String,Object> map=new HashMap<String,Object>();
-            map.put("email", email);
-            Student checkAdmin2=studentDao.dynamicFind(map);
-            if(checkAdmin2!=null && !email.equals(checkAdmin1.getEmail())){
-                result.setStatus(1);
-                result.setMsg("邮箱已经存在");
-                return result;
-            }
-        }
+
         Student student=new Student();
         student.setStudent_id(student_id);
         student.setStudent_number(student_number);
@@ -161,7 +142,7 @@ private StudentDao studentDao;
 
         Student student=new Student();
         student.setStudent_number(student_number);
-        student.setPassword(MSUtil.md5(new_password));;
+        student.setPassword(MSUtil.md5(new_password));
         Timestamp now=new Timestamp(System.currentTimeMillis());
         student.setModifytime(now);
         studentDao.dynamicUpdate(student);

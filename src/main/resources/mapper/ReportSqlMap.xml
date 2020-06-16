@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
-        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.weeklyreport.dao.ReportDao">
     <!-- 缓存配置-->
@@ -8,10 +8,10 @@
     <insert id="save" parameterType="com.example.weeklyreport.entity.Report"
             useGeneratedKeys="true" keyProperty="report_id">
         insert into ms_report
-		 (report_id,student_number,class_id,teacher_num,study_aim,reason,problem,live,next_aim,
+		 (report_id,student_number,class_id,teacher_num,study_aim,reason,problem,next_aim,
 		 creatime,modifytime)
 		 values(#{report_id},#{student_number},#{class_id},#{teacher_num},#{study_aim},#{reason},
-		#{problem},#{live},#{next_aim},sysdate(),sysdate())
+		#{problem},#{next_aim},sysdate(),sysdate())
 		</insert>
     <delete id="deleteById">
          delete from ms_report where report_id=#{report_id}
@@ -34,9 +34,6 @@
             <if test="problem!=null">
                 problem=#{problem},
             </if>
-            <if test="live!=null">
-                live=#{live},
-            </if>
             <if test="next_aim!=null">
                 next_aim=#{next_aim},
             </if>
@@ -46,10 +43,6 @@
         </set>
         where report_id=#{report_id}
     </update>
-    <select id="dynamicFind" resultType="com.example.weeklyreport.entity.Report"></select>
-    <select id="findUnion" resultType="com.example.weeklyreport.entity.Report"></select>
-    <select id="dynamicFind2" resultType="com.example.weeklyreport.entity.Report"></select>
-    <select id="findUnion2" resultType="com.example.weeklyreport.entity.Report"></select>
     <select id="findByStudentId" parameterType="map"
             resultType="com.example.weeklyreport.entity.Report">
         select ma.*,mr.student_name,mc.class_name
@@ -67,18 +60,20 @@
 
     <select id="findByClassId" parameterType="map"
             resultType="com.example.weeklyreport.entity.Report">
-        select ma.*,mr.class_name
+        select ma.*,mr.class_name, ms.student_name
         from ms_report ma
         join ms_class mr
         on ma.class_id=mr.class_id
+        join ms_student ms
+        on ms.student_number = ma.student_number
         <where>
             <if test="class_id!=null">
                 ma.class_id=#{class_id}
             </if>
-
             and YEARWEEK(DATE_FORMAT(ma.creatime,'%Y-%m-%d')) = YEARWEEK(NOW())
         </where>
     </select>
+
     <update id="saveAnswer" parameterType="com.example.weeklyreport.entity.Report">
         update ms_report
         <set>
@@ -90,12 +85,14 @@
         </if>
         </set>
         where student_number=#{student_number}
+        and YEARWEEK(DATE_FORMAT(creatime,'%Y-%m-%d')) = YEARWEEK(NOW())
 		</update>
     <select id="findByStudentNumber" resultType="com.example.weeklyreport.entity.Report">
 		select * from ms_report where student_number=#{student_number}
     </select>
-    <select id="countByClassId" resultType="java.lang.Integer">
-		select count(*) from ms_report where class_id=#{class_id} and YEARWEEK(DATE_FORMAT(creatime,'%Y-%m-%d')) = YEARWEEK(NOW())
+    <select id="countByClassId" resultType="int">
+		select count(*) from ms_report ma where class_id=#{class_id}
+		and YEARWEEK(DATE_FORMAT(ma.creatime,'%Y-%m-%d')) = YEARWEEK(NOW())
     </select>
 
     <select id="findBystudentNum" resultType="com.example.weeklyreport.entity.Report">
@@ -109,8 +106,6 @@
     <select id="findOldWeek" resultType="com.example.weeklyreport.entity.Report">
 		SELECT *,mr.student_name FROM ms_report ma JOIN ms_student mr ON ma.`student_number`=mr.`student_number`
 		WHERE ma.class_id =#{class_id} AND YEARWEEK(DATE_FORMAT(ma.creatime,'%Y-%m-%d')) = YEARWEEK(NOW())-1;
-
-
     </select>
 
     <select id="findBystudentNumMonth" resultType="com.example.weeklyreport.entity.Report">
@@ -124,8 +119,15 @@
     <select id="findByMonth" resultType="com.example.weeklyreport.entity.Report" parameterType="map">
 		select *,mr.student_name from ms_report ma join ms_student mr
         on ma.student_number=mr.student_number where
-         DATE_FORMAT( ma.creatime, '%Y%m' ) = DATE_FORMAT( realMoth , '%Y%m' )
+         DATE_FORMAT( ma.creatime, '%Y%m' ) = DATE_FORMAT( #{realMonth} , '%Y%m' )
         and  ma.student_number=#{student_number}
+    </select>
+
+    <select id="findByWeek" resultType="com.example.weeklyreport.entity.Report" parameterType="map">
+		select *,mr.class_name from ms_report ma join ms_class mr
+        on ma.class_id=mr.class_id where
+         YEARWEEK(DATE_FORMAT(ma.creatime,'%Y-%m-%d')) = YEARWEEK(NOW())+#{realWeek}
+        and  ma.class_id=#{class_id}
     </select>
 
 </mapper>

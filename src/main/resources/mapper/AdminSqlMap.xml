@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
-        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.weeklyreport.dao.AdminDao">
     <!-- 缓存配置-->
@@ -84,7 +84,6 @@
             resultType="com.example.weeklyreport.entity.Admin">
 		select * from ms_admin where admin_id=#{admin_id}
 	</select>
-    <select id="findUnion2" resultType="com.example.weeklyreport.entity.Admin"></select>
     <!-- 动态更新 -->
     <update id="dynamicUpdate"
             parameterType="com.example.weeklyreport.entity.Admin">
@@ -98,9 +97,6 @@
             </if>
             <if test="email!=null">
                 email=#{email},
-            </if>
-            <if test="real_name!=null">
-                real_name=#{real_name},
             </if>
             <if test="sex!=null">
                 sex=#{sex},

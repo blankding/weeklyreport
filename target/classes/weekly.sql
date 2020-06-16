@@ -91,7 +91,6 @@ CREATE TABLE `ms_report` (
   `study_aim` VARCHAR(300) COMMENT '学习目标',
   `reason` VARCHAR(300) COMMENT '原因',
   `problem` VARCHAR(300) COMMENT '问题',
-  `live` VARCHAR(300) COMMENT '生活',
   `next_aim` VARCHAR(300) COMMENT '今后目标',
   `answer` VARCHAR(300) COMMENT '回复',
   `creatime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -100,8 +99,8 @@ CREATE TABLE `ms_report` (
 ) ENGINE=INNODB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `ms_report` WRITE;
-INSERT INTO ms_report(report_id,student_number,class_id,teacher_num,study_aim,reason,problem,live,next_aim,answer,creatime,modifytime)
-VALUE(1,2017313101,'313',001,'aaaa','bbbb','cccc','dddd','eeee','ffff',SYSDATE(),SYSDATE());
+INSERT INTO ms_report(report_id,student_number,class_id,teacher_num,study_aim,reason,problem,next_aim,answer,creatime,modifytime)
+VALUE(1,2017313101,'313',001,'aaaa','bbbb','cccc','dddd','ffff',SYSDATE(),SYSDATE());
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ms_teacher`;

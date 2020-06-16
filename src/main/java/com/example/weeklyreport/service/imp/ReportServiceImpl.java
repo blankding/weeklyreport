@@ -78,9 +78,10 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
+
     /**更新周报*/
     @Override
-    public Result updateReport(int report_id, String study_aim, String reason, String problem, String live, String next_aim) {
+    public Result updateReport(int report_id, String study_aim, String reason, String problem,  String next_aim) {
         Result result=new Result();
         Report checkAdmin1=reportDao.findById(report_id);
         if(checkAdmin1==null){
@@ -95,7 +96,6 @@ public class ReportServiceImpl implements ReportService {
         report.setReason(reason);
         report.setProblem(problem);
         report.setNext(next_aim);
-        report.setLive(live);
         Timestamp now=new Timestamp(System.currentTimeMillis());
         report.setModifytime(now);
         reportDao.dynamicUpdate(report);
@@ -146,7 +146,7 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Result answerByStudentNumber(int student_number,String answer) {
         Result result=new Result();
-        Report checkAdmin1=reportDao.findByStudentNumber(student_number);
+        List checkAdmin1=reportDao.findBystudentNum(student_number);
         if(checkAdmin1==null){
             result.setStatus(1);
             result.setMsg("不存在此学生");
@@ -156,7 +156,8 @@ public class ReportServiceImpl implements ReportService {
         report.setStudent_number(student_number);
         report.setAnswer(answer);
         report.setCreatime(null);
-        report.setModifytime(null);
+        Timestamp now=new Timestamp(System.currentTimeMillis());
+        report.setModifytime(now);
         reportDao.saveAnswer(report);
         result.setStatus(0);
         result.setMsg("新增回答成功");
@@ -176,7 +177,9 @@ public class ReportServiceImpl implements ReportService {
             return result;
         }
         int classId = Integer.parseInt(class_id);
-        result.setData(reportDao.countByClassId(classId));
+        Integer count = reportDao.countByClassId(classId);
+        System.out.println(count);
+        result.setData(count);
         result.setStatus(0);
         result.setMsg("查询成功");
         return result;
@@ -218,6 +221,7 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
+    /**根据学号查询(本月）*/
     @Override
     public Result findByStudentNumMonth(int student_number) {
         Result result=new Result();
@@ -235,6 +239,7 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
+    /**根据学号年月查询*/
     @Override
     public Result findByMonth(String date, String stuNo) {
         Result result=new Result();
@@ -242,6 +247,25 @@ public class ReportServiceImpl implements ReportService {
         parmater.put("realMonth", DateUtil.getDateOfStr(date));
         parmater.put("student_number",stuNo);
         List<Report> reports=reportDao.findByMonth(parmater);
+        if (CollectionUtils.isEmpty(reports)){
+            result.setStatus(1);
+            result.setMsg("无"+date+"报表");
+            return result;
+        }
+        result.setData(reports);
+        result.setMsg("SUCCESS");
+        return result;
+    }
+
+    /**根据班级号第几周查询*/
+    @Override
+    public Result findByWeek(String date, String classId) {
+        Result result=new Result();
+        Map<String,Object> parmater=new HashMap<>(2);
+        int realdate = Integer.parseInt(date)-2;
+        parmater.put("realWeek",realdate );
+        parmater.put("class_id",classId);
+        List<Report> reports=reportDao.findByWeek(parmater);
         if (CollectionUtils.isEmpty(reports)){
             result.setStatus(1);
             result.setMsg("无"+date+"报表");

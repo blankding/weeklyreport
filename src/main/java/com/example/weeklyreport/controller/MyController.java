@@ -21,7 +21,9 @@ public class MyController {
         return "my";
     }
 
-    /**根据student_number查询信息*/
+    /**
+     * 根据student_number查询信息
+     * */
     @RequestMapping(value="/studentNumber",method= RequestMethod.POST)
     @ResponseBody
     public Result UnionList(int student_number) {

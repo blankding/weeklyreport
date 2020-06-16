@@ -4,15 +4,23 @@ package com.example.weeklyreport;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 
-@MapperScan("com.example.weeklyreport.dao")
+/**
+ * @author 丁鹏益
+ */
 @SpringBootApplication
-public class WeeklyreportApplication {
+@MapperScan("com.example.weeklyreport.dao")
+public class WeeklyreportApplication  extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-
         SpringApplication.run(WeeklyreportApplication.class, args);
     }
 
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(WeeklyreportApplication.class);
+    }
 }

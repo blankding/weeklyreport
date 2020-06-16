@@ -12,6 +12,14 @@ $(document).ready(function(){
         $("#submitBtn1").on("click",function(e){
             var username=$("#userName").val().trim();
             var password=$("#password").val().trim();
+            console.log("userName",username);
+            if(username == '' ){
+                alert("用户名不能为空！");
+                return ;
+            }else if(password == ''){
+                alert("密码不能为空！");
+                return ;
+            }
 
             $.ajax({
                      url:"student/login" ,    //请求的url地址
@@ -46,6 +54,14 @@ $("#submitBtn2").on("click",function(e){
     var username=$("#userName").val().trim();
     var password=$("#password").val().trim();
  //  alert("1")
+    console.log("userName",username);
+    if(username == '' ){
+        alert("用户名不能为空！");
+        return ;
+    }else if(password == ''){
+        alert("密码不能为空！");
+        return ;
+    }
     $.ajax({
         url:"teacher/login" ,    //请求的url地址
         dataType:"json",   //返回格式为json

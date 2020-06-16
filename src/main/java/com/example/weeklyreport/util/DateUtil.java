@@ -204,7 +204,7 @@ public class DateUtil {
      * @return
      */
     public static java.util.Date getDateOfStr(String dateStr) {
-        DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new java.text.SimpleDateFormat("yyyy-MM");
         java.util.Date da = null;
         try {
             da = df.parse(dateStr);

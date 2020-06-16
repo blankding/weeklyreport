@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
-        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.weeklyreport.dao.TeacherDao">
     <!-- 缓存配置-->
@@ -73,8 +73,5 @@
         </where>
     </select>
 
-    <select id="findUnion" resultType="com.example.weeklyreport.entity.Teacher"></select>
-    <select id="dynamicFind2" resultType="com.example.weeklyreport.entity.Teacher"></select>
-    <select id="findUnion2" resultType="com.example.weeklyreport.entity.Teacher"></select>
 
 </mapper>

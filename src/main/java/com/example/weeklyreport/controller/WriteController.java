@@ -16,13 +16,17 @@ import javax.annotation.Resource;
 public class WriteController {
     @Resource
     private ReportService reportService;
-    //打开所有html页面
+    /**
+     * 打开所有页面
+     */
     @RequestMapping("/write")
     public String html(){
         return "write";
     }
 
-    /**新增周报*/
+    /**
+     * 新增周报
+     * */
     @RequestMapping(value="/report_add",method=RequestMethod.POST)
     @ResponseBody
     public Result add(String student_num,String class_id,String teacher_number,String study_aim,String reason,
