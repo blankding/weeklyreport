@@ -57,14 +57,19 @@
             <div  class="breadcrumbs">
             
                <ul>
-                 <span class="fa fa-search" style="margin-left:830px;margin-top:20px;"></span><a href="#" style="margin-left:10px;text-decoration: none;font-size:14px;">搜索</a></li>       
+                 <span class="fa fa-search" style="margin-left:1030px;margin-top:20px;"></span><a href="#" style="margin-left:50px;text-decoration: none;font-size:14px;">搜索</a></li>       
               </ul>
             </div>
           
             <div class="datas" style="height:auto;">
-            
+               
            
-             </div>  
+             </div> 
+              <div class="answer" style="position: absolute;top: 100px;right: 10px;">
+                <h4 style="margin-bottom:-18px;">本周问题的老师回复:</h4><br>
+                <button id="Watch" style="margin-left:200px;margin-bottom:10px;">查看</button><br>
+                <textarea name="suggest" id="answer" cols="40" rows="10" ></textarea><br>
+              </div> 
            </div>
            </div>
      
@@ -75,6 +80,7 @@
      </div>
 <script th:src="@{/static/js/jquery-3.1.1.js}" ></script>
        <script  th:src="@{/static/js/main.js}"></script>
+        <script  th:src="@{/static/js/my.js}"></script>
        <script>
        $.ajax({
            url:"/student/studentNumber" ,    //请求的url地址
@@ -109,7 +115,7 @@
 				var cid = $(this).attr("data-id");
 
 		        $.ajax({
-		        	url:"/report/DeleteReportId",    //请求的url地址
+		        	url:"/report/DeleteReportId",    //请求的url地址 
 		            dataType:"json",   //返回格式为json
 		            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
 		            data:{

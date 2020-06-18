@@ -86,9 +86,6 @@ import javax.servlet.http.HttpServletRequest;
     @RequestMapping(value="/changePWD",method=RequestMethod.POST)
     @ResponseBody
     public Result Change(int teacher_num, String old_password, String new_password){
-        System.out.println("教师编号" + teacher_num);
-        System.out.println("教师老密码" + old_password);
-        System.out.println("教师新密码" + new_password);
         Result result=teacherService.updatePass(teacher_num, old_password, new_password);
         return result;
     }
